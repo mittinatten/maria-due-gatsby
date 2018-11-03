@@ -7,7 +7,7 @@ export class Concert extends Component {
             <div>
                 <h3>{concert.venue} {concert.date.replace(/T.*$/, '')}</h3>
                 <p>{concert.description}</p>
-                <p>Concert starts {concert.date.replace(/^.*T(\d\d\:\d\d).*$/, '$1')}</p>
+                <p>Concert starts {concert.date.replace(/^.*T(\d\d:\d\d).*$/, '$1')}</p>
             </div>
         );
     }
