@@ -11,7 +11,9 @@ const Layout = ({ children }) => (
       query SiteTitleQuery {
         site {
           siteMetadata {
-            title
+            title,
+            description,
+            url
           }
         }
       }
@@ -21,8 +23,9 @@ const Layout = ({ children }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'description', content: data.site.siteMetadata.description },
+            { name: 'keywords', content: data.site.siteMetadata.keywords },
+            { name: 'robots', content: data.site.siteMetadata.robots }
           ]}
         >
           <html lang="en" />

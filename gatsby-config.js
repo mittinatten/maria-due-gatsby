@@ -1,6 +1,10 @@
 module.exports = {
     siteMetadata: {
         title: 'Maria Due [test]',
+        description: 'Artist page for Maria Due',
+        url: 'https://mariadue.net',
+        keywords: 'music, Maria Due',
+        robots: 'noindex, nofollow' // TODO: change this when finished!
     },
     plugins: [
         'gatsby-plugin-react-helmet',
