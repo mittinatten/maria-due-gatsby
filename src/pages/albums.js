@@ -6,7 +6,7 @@ import Album from '../components/album';
 
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
-        <Album album={edge.node} key={edge.node._id}/>
+        <Album album={edge.node} artist={data.site.siteMetadata.url} key={edge.node._id}/>
     );
 
     return(
@@ -32,6 +32,11 @@ export const query = graphql`
             }
           }
         }
+      }
+    },
+    site {
+      siteMetadata {
+        url
       }
     }
   }
