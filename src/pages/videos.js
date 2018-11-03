@@ -7,14 +7,14 @@ import Video from '../components/video';
 import './style.css';
 
 export const VideoPage = ({ data }) => {
-    const concerts = data.allVideo.edges.map(edge =>
+    const videos = data.allVideo.edges.map(edge =>
         <Video video={edge.node} key={edge.node._id} />
     );
 
     return(
             <Layout>
                 <div className='cards'>
-                { concerts }
+                { videos }
                 </div>
             </Layout>
     );
