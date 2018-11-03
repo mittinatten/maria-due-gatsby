@@ -3,6 +3,7 @@ module.exports = {
         title: 'Maria Due [test]',
         description: 'Artist page for Maria Due',
         url: 'https://mariadue.net',
+        about: 'https://www.wikidata.org/wiki/Q17143368',
         keywords: 'music, Maria Due',
         robots: 'noindex, nofollow' // TODO: change this when finished!
     },
