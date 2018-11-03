@@ -18,7 +18,7 @@ export const AlbumPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allAlbum {
+    allAlbum(sort: {fields: [ year ], order: DESC} ) {
       totalCount,
       edges {
         node {
