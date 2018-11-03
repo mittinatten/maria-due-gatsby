@@ -4,7 +4,7 @@ class Album extends Component {
     render() {
         const album = this.props.album;
         const spotify = album.spotify;
-        console.log(spotify);
+
         return (
             <div style={{ display: 'flex' }}>
                 <div style={{ flex: 1, marginRight: '20px' }}>
@@ -19,5 +19,6 @@ class Album extends Component {
         );
     }
 }
+
 
 export default Album;

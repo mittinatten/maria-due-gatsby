@@ -5,8 +5,9 @@ export class Concert extends Component {
         const concert = this.props.concert;
         return (
             <div>
-                <h3>{concert.place}</h3>
-                <p>{concert.date}</p>
+                <h3>{concert.venue} {concert.date.replace(/T.*$/, '')}</h3>
+                <p>{concert.description}</p>
+                <p>Concert starts {concert.date.replace(/^.*T(\d\d\:\d\d).*$/, '$1')}</p>
             </div>
         );
     }

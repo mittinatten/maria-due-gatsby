@@ -23,8 +23,9 @@ export const query = graphql`
       edges {
         node {
           _id,
-          place,
-          date
+          venue,
+          date,
+          description
         }
       }
     }
