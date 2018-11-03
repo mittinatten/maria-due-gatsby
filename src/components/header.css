@@ -1,3 +1,23 @@
 a {
     color: black;
 }
+
+div.menu > div {
+    margin-right: 8px;
+    font-size: 14px
+
+}
+
+div.header {
+    align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+    div.menu > div {
+        display: inline;
+    }
+    div.header {
+        align-items: baseline
+    }
+}
+
