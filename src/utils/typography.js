@@ -11,7 +11,8 @@ const typography = new Typography({
         {
             name: 'Roboto Slab',
             styles: [
-                '300',
+                '400',
+                '700',
             ],
         },
     ],

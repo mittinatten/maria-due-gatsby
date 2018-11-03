@@ -2,11 +2,25 @@ import React from 'react'
 import { Link } from 'gatsby'
 import './header.css';
 
+const menuItems = [
+    { link: '/albums', label: 'Albums' },
+    { link: '/concerts', label: 'Concerts' },
+    { link: '/videos', label: 'Videos' },
+    { link: '/press', label: 'Press' },
+    { link: '/contact', label: 'Contact' }
+]
+
+const menu = menuItems.map(item =>
+    <div key={item.link}>
+        <Link to={item.link} activeClassName="active">{item.label}</Link>
+    </div>);
+
 const Header = ({ siteTitle }) => (
   <div
     style={{
       marginBottom: '1.45rem',
     }}
+    className="header"
   >
     <div
       style={{
@@ -35,21 +49,7 @@ const Header = ({ siteTitle }) => (
                 </h1>
             </div>
             <div className="menu">
-                <div>
-                    <Link to="/albums">Albums</Link>
-                </div>
-                <div>
-                    <Link to="/concerts">Concerts</Link>
-                </div>
-                <div>
-                    <Link to="/videos">Videos</Link>
-                </div>
-                <div>
-                    <Link to="/press">Press</Link>
-                </div>
-                <div>
-                    <Link to="/contact">Contact</Link>
-                </div>
+                {menu}
             </div>
         </div>
     </div>
