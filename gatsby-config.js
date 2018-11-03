@@ -52,6 +52,11 @@ module.exports = {
                         name: 'frontMatter',
                         type: 'FrontMatter',
                         groq: `*[_type == 'frontMatter']`
+                    },
+                    {
+                        name: 'videos',
+                        type: 'Video',
+                        groq: `*[_type == 'video']`
                     }
                 ]
             }
