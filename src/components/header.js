@@ -18,7 +18,7 @@ const menu = menuItems.map(item =>
 const Header = ({ siteTitle }) => (
   <div
     style={{
-      marginBottom: '1.45rem',
+      marginBottom: '0.5rem',
     }}
     className="header"
   >
