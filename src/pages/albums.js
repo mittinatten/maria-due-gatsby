@@ -25,6 +25,7 @@ export const query = graphql`
           _id,
           title,
           year,
+          spotify,
           cover {
             asset {
               url

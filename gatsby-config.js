@@ -39,13 +39,19 @@ module.exports = {
                                 asset->
                             },
                             title,
-                            year
+                            year,
+                            spotify
                         }`
                     },
                     {
                         name: 'concerts',
                         type: 'Concert',
                         groq: `*[_type == 'concert']`
+                    },
+                    {
+                        name: 'frontMatter',
+                        type: 'FrontMatter',
+                        groq: `*[_type == 'frontMatter']`
                     }
                 ]
             }
