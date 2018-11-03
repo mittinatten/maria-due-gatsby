@@ -1,5 +1,8 @@
-.header a {
+a {
     color: black;
+}
+
+.header a {
     text-decoration: none
 }
 
