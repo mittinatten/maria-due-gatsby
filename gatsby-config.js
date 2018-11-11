@@ -43,6 +43,7 @@ module.exports = {
                                 _type,
                                 asset->
                             },
+                            songs,
                             title,
                             year,
                             spotify

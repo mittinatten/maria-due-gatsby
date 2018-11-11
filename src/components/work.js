@@ -10,7 +10,7 @@ class Work extends Component {
         return (
             <div>
                 <p>
-                    <a href={ spotify }><i class="fas fa-play-circle"></i></a>&nbsp;&nbsp;
+                    <a href={ spotify }><i className={'fas fa-play-circle'}></i></a>&nbsp;&nbsp;
                     { artist.name } - { title } - { year }
                 </p>
             </div>

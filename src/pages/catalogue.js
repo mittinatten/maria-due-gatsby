@@ -24,36 +24,45 @@ export const AlbumPage = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
-    allAlbum(sort: {fields: [ year ], order: DESC} ) {
-      totalCount,
-      edges {
-        node {
-          _id,
-          title
-        }
-      }
-    },
-    allAppearsOn(sort: {fields: [ year ], order: DESC}) {
-        totalCount,
-        edges {
-            node {
-                _id,
-                title,
-                year,
-                spotify,
-                by {
-                    name
+    query {
+        allAlbum(sort: {fields: [ year ], order: DESC} ) {
+            totalCount,
+            edges {
+                node {
+                    _id,
+                    title,
+                    year,
+                    cover {
+                        asset {
+                            url
+                        }
+                    }
+                    fields {
+                        slug
+                    }
+                }
+            }
+        },
+        allAppearsOn(sort: {fields: [ year ], order: DESC}) {
+            totalCount,
+            edges {
+                node {
+                    _id,
+                    title,
+                    year,
+                    spotify,
+                    by {
+                        name
+                    }
                 }
             }
         }
+        site {
+            siteMetadata {
+                about
+            }
+        }
     }
-    site {
-      siteMetadata {
-        about
-      }
-    }
-  }
 `;
 
 
