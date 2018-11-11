@@ -3,10 +3,10 @@ import { Link } from 'gatsby'
 import './header.css';
 
 const menuItems = [
-    { link: '/albums', label: 'Albums' },
+    { link: '/catalogue', label: 'Catalogue' },
     { link: '/concerts', label: 'Concerts' },
     { link: '/videos', label: 'Videos' },
-    { link: '/press', label: 'Press' },
+    { link: '/about', label: 'About' },
     { link: '/contact', label: 'Contact' }
 ]
 

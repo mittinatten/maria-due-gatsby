@@ -49,6 +49,11 @@ module.exports = {
                         }`
                     },
                     {
+                        name: 'appearsOn',
+                        type: 'AppearsOn',
+                        groq: `*[_type == 'appearsOn']`
+                    },
+                    {
                         name: 'concerts',
                         type: 'Concert',
                         groq: `*[_type == 'concert']`
