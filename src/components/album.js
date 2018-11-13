@@ -7,22 +7,27 @@ class Album extends Component {
         let cover;
 
         if (album.cover) {
-            cover = <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
+            cover =
+                <a href={album.fields.slug}>
+                    <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
+                </a>
         } else {
             cover =
-                <div style={{
+                <a href={album.fields.slug} style={{
+                    display: 'block',
                     backgroundColor: 'yellow',
                     width: '100%',
                     height: 0,
                     paddingTop: '45%',
                     paddingBottom: '55%',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    textDecoration: 'none'
                 }}>
                     <div>
                         { album.title }<br />
                         { album.year }
                     </div>
-                </div>
+                </a>
         }
 
         return (

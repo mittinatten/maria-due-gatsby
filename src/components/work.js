@@ -7,13 +7,20 @@ class Work extends Component {
         const artist = this.props.work.by;
         const spotify = this.props.work.spotify;
 
+        let artistField;
+        if (artist.homePage) {
+            artistField = <a href={ artist.homePage }>{ artist.name }</a>;
+        } else {
+            artistField = artist.name;
+        }
+
         return (
             <div style={{display: 'flex', marginBottom: '0.8rem'}}>
                 <div>
                     <a href={ spotify } className="play-link"><i className={'fas fa-play-circle'}></i></a>
                 </div>
                 <div>
-                    { artist.name }: <em>{ title }</em> ({ year })
+                    { artistField }: <em>{ title }</em> ({ year })
                 </div>
             </div>
         );

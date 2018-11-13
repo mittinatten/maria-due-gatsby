@@ -55,7 +55,8 @@ export const query = graphql`
                     year,
                     spotify,
                     by {
-                        name
+                        name,
+                        homePage
                     }
                 }
             }
