@@ -4,8 +4,6 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import Video from '../components/video';
 
-import './style.css';
-
 export const VideoPage = ({ data }) => {
     const videos = data.allVideo.edges.map(edge =>
         <Video video={edge.node} key={edge.node._id} />
