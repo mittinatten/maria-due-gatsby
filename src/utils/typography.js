@@ -16,7 +16,7 @@ const typography = new Typography({
             ],
         },
     ],
-    baseFontSize: '18px',
+    baseFontSize: '16px',
     headerFontFamily: [ 'Roboto Condensed' ],
     bodyFontFamily: [ 'Roboto Slab' ],
 });

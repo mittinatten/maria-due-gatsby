@@ -10,15 +10,15 @@ export default ({ data }) => {
     let play;
 
     if (album.spotify) {
-        play = <a href={ album.spotify }><i className={'fas fa-play-circle'}></i></a>;
+        play = <a href={ album.spotify } className='play-link'><i className={'fas fa-play-circle'}></i></a>;
     }
 
     if (album.cover) {
-         cover = <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
+        cover = <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
     }
 
     if (album.songs) {
-        songs = <div><h3>Songs</h3><ul> { album.songs.map(song => <li key={song.number}>{ song.title }</li>) }</ul></div>;
+        songs = <div><h3>Songs</h3><ul>{ album.songs.map(song => <li key={song.number}>{ song.title }</li>) }</ul></div>;
     }
 
     return (

@@ -8,11 +8,13 @@ class Work extends Component {
         const spotify = this.props.work.spotify;
 
         return (
-            <div>
-                <p>
-                    <a href={ spotify }><i className={'fas fa-play-circle'}></i></a>&nbsp;&nbsp;
-                    { artist.name } - { title } - { year }
-                </p>
+            <div style={{display: 'flex', marginBottom: '0.8rem'}}>
+                <div>
+                    <a href={ spotify } className="play-link"><i className={'fas fa-play-circle'}></i></a>
+                </div>
+                <div>
+                    { artist.name }: <em>{ title }</em> ({ year })
+                </div>
             </div>
         );
     }

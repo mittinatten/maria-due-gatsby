@@ -7,7 +7,9 @@ import Work from '../components/work';
 
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
-        <Album album={edge.node} artist={data.site.siteMetadata.about} key={edge.node._id}/>
+        <div style={{minHeight: '200px'}}  key={edge.node._id}>
+            <Album album={edge.node} artist={data.site.siteMetadata.about}/>
+        </div>
     );
 
     const appearsOn = data.allAppearsOn.edges.map(edge =>
@@ -16,7 +18,7 @@ export const AlbumPage = ({ data }) => {
 
     return(
             <Layout>
-                { albums }
+                <div className="cards">{ albums }</div>
                 <h2>Collaborations</h2>
                 { appearsOn }
             </Layout>
@@ -32,6 +34,7 @@ export const query = graphql`
                     _id,
                     title,
                     year,
+                    spotify,
                     cover {
                         asset {
                             url
