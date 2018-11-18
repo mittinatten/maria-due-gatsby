@@ -46,7 +46,15 @@ module.exports = {
                             'songs': songs[]->{_ref, title},
                             title,
                             year,
-                            spotify
+                            spotify,
+                            recordLabel {
+                                name,
+                                homePage
+                            },
+                            producer {
+                                name,
+                                homePage
+                            }
                         }`
                     },
                     {
