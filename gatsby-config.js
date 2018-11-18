@@ -27,6 +27,13 @@ module.exports = {
                 pathToConfigModule: 'src/utils/typography.js',
             }
         },
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                host: 'https://mariadue.net',
+                policy: [{ userAgent: '*', disallow: '/' }]
+            }
+        },
         'gatsby-plugin-offline',
         {
             resolve: 'gatsby-source-sanity',
