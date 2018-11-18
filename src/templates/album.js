@@ -2,35 +2,43 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import AlbumCover from "../components/album-cover";
+import "./album.css"
 
 export default ({ data }) => {
     const album = data.album;
     let songs;
-    let cover;
     let play;
 
     if (album.spotify) {
         play = <a href={ album.spotify } className='play-link'><i className={'fas fa-play-circle'}></i></a>;
     }
 
-    if (album.cover) {
-        cover = <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
-    }
-
     if (album.fields.songs) {
         songs =
-            <div><h3>Songs</h3><ul>
-                { album.fields.songs.map(song =>
-                    <li key={song.title}><a href={song.slug}>{ song.title }</a></li>)
-                }
-            </ul></div>;
+            <div>
+                <ol>
+                    { album.fields.songs.map(song =>
+                        <li key={song.title}><a href={song.slug}>{ song.title }</a></li>)
+                    }
+                </ol>
+            </div>;
     }
 
     return (
         <Layout>
-            <h2>{play}{album.title}</h2>
-            { cover }
-            { songs }
+            <div itemProp="albumRelease" itemScope itemType="https://schema.org/MusicRelease" style={{marginBottom: '1rem'}}>
+                <span itemProp="datePublished">{album.year}</span>
+                <h2>{play}<span itemProp="name">{album.title}</span></h2>
+                <div className="album">
+                    <div className="cover">
+                        <AlbumCover album={album}></AlbumCover>
+                    </div>
+                    <div className="songs">
+                        { songs }
+                    </div>
+                </div>
+            </div>
         </Layout>
     )
 }

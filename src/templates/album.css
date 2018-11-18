@@ -1,0 +1,19 @@
+.cover {
+    margin-bottom: 1rem
+}
+
+@media only screen and (min-width: 600px) {
+    .album {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cover {
+        flex: 1;
+        padding-right: 1rem;
+    }
+
+    .songs {
+        flex: 1;
+    }
+}
