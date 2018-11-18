@@ -20,3 +20,8 @@ div.cards {
 .play-link {
     padding-right: 0.5em;
 }
+
+pre {
+    font-family: 'Roboto Mono', 'monospace';
+    word-wrap: break-word;
+}

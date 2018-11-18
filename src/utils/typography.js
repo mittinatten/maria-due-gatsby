@@ -15,6 +15,12 @@ const typography = new Typography({
                 '700',
             ],
         },
+        {
+            name: 'Roboto Mono',
+            styles: [
+                '400'
+            ]
+        }
     ],
     baseFontSize: '16px',
     headerFontFamily: [ 'Roboto Condensed' ],

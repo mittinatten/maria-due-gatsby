@@ -17,8 +17,13 @@ export default ({ data }) => {
         cover = <img src={album.cover.asset.url} alt="cover" style={{margin: 0}}/>
     }
 
-    if (album.songs) {
-        songs = <div><h3>Songs</h3><ul>{ album.songs.map(song => <li key={song.number}>{ song.title }</li>) }</ul></div>;
+    if (album.fields.songs) {
+        songs =
+            <div><h3>Songs</h3><ul>
+                { album.fields.songs.map(song =>
+                    <li key={song.title}><a href={song.slug}>{ song.title }</a></li>)
+                }
+            </ul></div>;
     }
 
     return (
@@ -35,13 +40,15 @@ export const query = graphql`
         album(fields: { slug: { eq: $slug } }) {
             title,
             spotify,
-            songs {
-                title,
-                number
-            },
             cover {
                 asset {
                     url
+                }
+            },
+            fields {
+                songs {
+                    title,
+                    slug
                 }
             }
         }

@@ -43,7 +43,7 @@ module.exports = {
                                 _type,
                                 asset->
                             },
-                            songs,
+                            'songs': songs[]->{_ref, title},
                             title,
                             year,
                             spotify
@@ -53,6 +53,16 @@ module.exports = {
                         name: 'appearsOn',
                         type: 'AppearsOn',
                         groq: `*[_type == 'appearsOn']`
+                    },
+                    {
+                        name: 'songs',
+                        type: 'Song',
+                        groq: `*[_type == 'song']{
+                            _id,
+                            title,
+                            lyrics,
+                            'album': album->{_ref, title, year}
+                        }`
                     },
                     {
                         name: 'concerts',
