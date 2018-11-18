@@ -49,7 +49,7 @@ export default ({ data }) => {
             name = album.producer.name;
         }
 
-        release = <span>Produced by { name }.</span>;
+        producer = <span>Produced by { name }.</span>;
     }
 
     return (
