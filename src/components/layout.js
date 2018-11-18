@@ -26,7 +26,8 @@ const Layout = ({ children }) => (
           meta={[
             { name: 'description', content: data.site.siteMetadata.description },
             { name: 'keywords', content: data.site.siteMetadata.keywords },
-            { name: 'robots', content: data.site.siteMetadata.robots }
+            { name: 'robots', content: data.site.siteMetadata.robots },
+            { name: 'google-site-verification', content: 'zo-B2TdZe7lSw-ZoS0usXLKmwI380HjWKWlsSzFKVa8' },
           ]}
           link={[
             {
