@@ -24,7 +24,8 @@ export class Video extends Component {
             left: 0,
             cursor: 'pointer',
             width: '100%',
-            height: '100%'
+            height: '96%',
+            backgroundColor: 'black'
         }
 
         if (this.state.showImage) {
@@ -45,10 +46,10 @@ export class Video extends Component {
         }
         return (
             <div style={{marginBottom: '35px'}}>
-                <h3>{video.title}</h3>
                 <div style={{ position: 'relative', height: 0, paddingTop: '25px', paddingBottom: '68%'}}>
                     {videoFrame}
                 </div>
+                <p><a href={video.url}>{video.title}</a></p>
             </div>
         );
     }
