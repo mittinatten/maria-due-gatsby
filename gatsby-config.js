@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: 'Maria Due [test]',
+        title: 'Maria Due',
         description: 'Artist page for Maria Due',
         url: 'https://mariadue.net',
         siteUrl: 'https://mariadue.net', // necessary for robots.txt
