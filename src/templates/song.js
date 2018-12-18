@@ -6,17 +6,36 @@ import Layout from "../components/layout";
 export default ({ data }) => {
     let lyrics;
     let album;
+    let creator;
+    const fields = data.song.fields;
 
     if (data.song.lyrics) {
         lyrics = data.song.lyrics.split('\n').map((line, index) =>
             <div key={index} style={{textIndent: '-1em', marginLeft: '1em', minHeight: '1em' }}>{ line }</div>);
     }
 
-    if (data.song.album && data.song.fields && data.song.fields.albumSlug) {
+    if (data.song.album && fields && fields.albumSlug) {
         album =
             <p style={{marginTop: '2em'}}>
-                From <a href={data.song.fields.albumSlug}>{ data.song.album.title }</a> { data.song.album.year }
+                From the album <a href={fields.albumSlug}>{ data.song.album.title }</a> { data.song.album.year }.
             </p>
+    }
+
+    if (fields && fields.lyricsBy && fields.musicBy) {
+        if (JSON.stringify(fields.lyricsBy) === JSON.stringify(fields.musicBy)) {
+            const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
+            creator =
+                <p>
+                    Words and music by {lyricsByNames}.
+                </p>
+        } else {
+            const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
+            const musicByNames = fields.musicBy.map(person => person.name).join(', ');
+            creator =
+                <p>
+                    Lyrics by {lyricsByNames}, music by {musicByNames}.
+                </p>
+        }
     }
 
     return (
@@ -24,6 +43,7 @@ export default ({ data }) => {
             <h2>{ data.song.title }</h2>
             { lyrics }
             { album }
+            { creator }
         </Layout>
     )
 }
@@ -38,7 +58,15 @@ export const query = graphql`
                 year
             },
             fields {
-                albumSlug
+                albumSlug,
+                lyricsBy {
+                    name,
+                    sameAs
+                },
+                musicBy {
+                    name,
+                    sameAs
+                }
             }
         }
     }

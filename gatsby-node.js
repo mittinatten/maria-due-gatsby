@@ -6,7 +6,7 @@
 
 const path = require('path');
 
-
+const { siteMetadata } = require('./gatsby-config.js');
 
 function titleToSlug(title) {
     return title.replace(/ /g, '-').toLowerCase();
@@ -55,8 +55,20 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
                 node,
                 name: 'albumSlug',
                 value: createAlbumSlug(node.album)
-            })
+            });
         }
+
+        createNodeField({
+            node,
+            name: 'lyricsBy',
+            value: node.lyricsBy || [ { name: siteMetadata.aboutName, sameAs: siteMetadata.about }]
+        });
+
+        createNodeField({
+            node,
+            name: 'musicBy',
+            value: node.musicBy || [ { name: siteMetadata.aboutName, sameAs: siteMetadata.about }]
+        });
     }
 }
 

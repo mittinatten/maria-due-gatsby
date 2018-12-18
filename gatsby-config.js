@@ -5,6 +5,7 @@ module.exports = {
         url: 'https://mariadue.net',
         siteUrl: 'https://mariadue.net', // necessary for robots.txt
         about: 'https://www.wikidata.org/wiki/Q17143368',
+        aboutName: 'Maria Due',
         keywords: 'music, Maria Due',
         robots: 'noindex, nofollow' // TODO: change this when finished!
     },
@@ -78,7 +79,9 @@ module.exports = {
                             _id,
                             title,
                             lyrics,
-                            'album': album->{_ref, title, year}
+                            'album': album->{_ref, title, year},
+                            'lyricsBy': lyricsBy[],
+                            'musicBy': musicBy[]
                         }`
                     },
                     {
