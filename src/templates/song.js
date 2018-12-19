@@ -21,7 +21,7 @@ export default ({ data }) => {
         album =
             <p>
                 Recorded by&nbsp;
-                <span itemProp="creator" itemScope itemType="https://schema.org/MusicGroup">
+                <span itemProp="byArtist" itemScope itemType="https://schema.org/MusicGroup">
                     <span itemProp="name">{aboutName}</span>
                     <span itemProp="sameAs" style={{display: 'none'}}>{about}</span>
                 </span>
