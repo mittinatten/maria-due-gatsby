@@ -18,7 +18,9 @@ class Album extends Component {
                     </a>
                 </div>
                 <div style={{flex: 1}}>
-                    <a href={album.fields.slug} itemProp="name">{album.title}</a>
+                    <a href={album.fields.slug} itemProp="sameAs">
+                        <span itemProp="name">{album.title}</span>
+                    </a>
                 </div>
             </div>
         );
