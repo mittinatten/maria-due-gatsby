@@ -21,6 +21,10 @@ export const AlbumPage = ({ data }) => {
     return(
             <Layout>
                 <div itemScope itemType="https://schema.org/MusicGroup">
+                    <span style={{display: 'none'}}>
+                        <span itemProp="name">{data.site.siteMetadata.aboutName}</span>
+                        <span itemProp="sameAs">{data.site.siteMetadata.about}</span>
+                    </span>
                     <div className="cards">{ albums }</div>
                 </div>
                 <h2>Collaborations</h2>
