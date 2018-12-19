@@ -32,11 +32,11 @@ export default ({ data }) => {
                 Words and music by {lyricsByNames}.
             </p>
     } else {
-        const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
-        const musicByNames = fields.musicBy.map(person => person.name).join(', ');
+        const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ').replace(/,(?!.*,)/, ' and');
+        const musicByNames = fields.musicBy.map(person => person.name).join(', ').replace(/,(?!.*,)/, ' and');
         creator =
             <p>
-                Lyrics by {lyricsByNames}, music by {musicByNames}.
+                Lyrics by {lyricsByNames}. Music by {musicByNames}.
             </p>
     }
 
