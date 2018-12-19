@@ -8,6 +8,8 @@ export const IndexPage = ({ data }) => {
             <Layout>
             <h2>{data.frontMatter.title}</h2>
             <p>{data.frontMatter.body}</p>
+            <h3>Contact</h3>
+            <p>{data.contactInfo.description} <a href={'mailto:' + data.contactInfo.email}>{data.contactInfo.email}</a></p>
             </Layout>
     );
 }
@@ -20,6 +22,11 @@ export const query = graphql`
         _id,
         body,
         title
+    },
+    contactInfo {
+        _id,
+        email,
+        description
     }
   }
 `;

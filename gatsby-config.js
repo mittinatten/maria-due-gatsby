@@ -98,6 +98,11 @@ module.exports = {
                         name: 'videos',
                         type: 'Video',
                         groq: `*[_type == 'video']`
+                    },
+                    {
+                        name: 'contactInfo',
+                        type: 'ContactInfo',
+                        groq: `*[_type == 'contactInfo']`
                     }
                 ]
             }

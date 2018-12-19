@@ -6,8 +6,7 @@ const menuItems = [
     { link: '/catalogue', label: 'Catalogue' },
     //{ link: '/calendar', label: 'Calendar' },
     { link: '/videos', label: 'Videos' },
-    { link: '/about', label: 'About' },
-    { link: '/contact', label: 'Contact' }
+    { link: '/about', label: 'About' }
 ]
 
 const menu = menuItems.map(item =>
