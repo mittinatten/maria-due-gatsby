@@ -70,9 +70,12 @@ export default ({ data }) => {
                 <div itemProp="lyrics" itemScope itemType="https://schema.org/CreativeWork">
                     <div itemProp="text">{ lyrics }</div>
                 </div>
-                <div itemProp="isPartOf"
-                    itemScope itemType="https://schema.org/MusicAlbum">
-                    { album }
+                <div itemProp="recordedAs"
+                    itemScope itemType="https://schema.org/MusicRecording">
+                    <span itemProp="inAlbum"
+                          itemScope itemType="https://schema.org/MusicAlbum">
+                        { album }
+                    </span>
                 </div>
                 { creator }
             </div>
