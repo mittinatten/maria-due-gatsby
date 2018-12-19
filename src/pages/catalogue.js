@@ -7,10 +7,10 @@ import Work from '../components/work';
 
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
-        <div style={{minHeight: '200px'}}  key={edge.node._id}>
-            <Album album={edge.node}
-                artistName={data.site.siteMetadata.aboutName}
-                artistSameAs={data.site.siteMetadata.about}/>
+        <div style={{minHeight: '200px'}}  key={edge.node._id}
+            itemProp="album"
+            itemScope itemType="https://schema.org/MusicAlbum">
+            <Album album={edge.node} />
         </div>
     );
 
@@ -20,7 +20,9 @@ export const AlbumPage = ({ data }) => {
 
     return(
             <Layout>
-                <div className="cards">{ albums }</div>
+                <div itemScope itemType="https://schema.org/MusicGroup">
+                    <div className="cards">{ albums }</div>
+                </div>
                 <h2>Collaborations</h2>
                 { appearsOn }
             </Layout>
