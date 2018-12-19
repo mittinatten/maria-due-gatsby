@@ -60,7 +60,7 @@ export default ({ data }) => {
         }
 
         producer =
-            <span itemProp="contributor" itemScope itemType="https://schema.org/Person">
+            <span itemProp="producer" itemScope itemType="https://schema.org/Person">
                 Produced by <span itemProp="name">{ name }</span>.
                 <span itemProp="sameAs" style={{display: 'none'}}>{album.producer.sameAs}</span>
             </span>;
