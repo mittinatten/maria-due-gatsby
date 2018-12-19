@@ -3,3 +3,12 @@
     margin-left: 1em;
     min-height: 1em;
 }
+
+.credits {
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
+}
+
+.lyrics {
+    margin-bottom: 2em;
+}

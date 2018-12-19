@@ -10,6 +10,7 @@ export default ({ data }) => {
     let album;
     let creator;
     const fields = data.song.fields;
+    const { about, aboutName } = data.site.siteMetadata;
 
     if (data.song.lyrics) {
         lyrics = data.song.lyrics.split('\n').map((line, index) =>
@@ -18,27 +19,37 @@ export default ({ data }) => {
 
     if (data.song.album && fields && fields.albumSlug) {
         album =
-            <p style={{marginTop: '2em'}}>
-                From the album <a itemProp="sameAs" href={fields.albumSlug}>
+            <p>
+                Recorded by&nbsp;
+                <span itemProp="creator" itemScope itemType="https://schema.org/MusicGroup">
+                    <span itemProp="name">{aboutName}</span>
+                    <span itemProp="sameAs" style={{display: 'none'}}>{about}</span>
+                </span>
+                &nbsp;in&nbsp;
+                <span itemProp="datePublished">{ data.song.album.year }</span>
+                &nbsp;on the album&nbsp;
+                <a itemProp="sameAs" href={fields.albumSlug}>
                     <span itemProp="name">
                         { data.song.album.title }
                     </span>
-                </a> <span itemProp="datePublished">{ data.song.album.year }</span>.
+                </a>
+                .
             </p>
     }
 
     if (JSON.stringify(fields.lyricsBy) === JSON.stringify(fields.musicBy)) {
         const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
         creator =
-            <p>
+            <p className="credits">
                 Words and music by {lyricsByNames}.
             </p>
     } else {
         const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ').replace(/,(?!.*,)/, ' and');
         const musicByNames = fields.musicBy.map(person => person.name).join(', ').replace(/,(?!.*,)/, ' and');
         creator =
-            <p>
-                Lyrics by {lyricsByNames}. Music by {musicByNames}.
+            <p className="credits">
+                Composition by {musicByNames}.<br />
+                Lyrics by {lyricsByNames}.
             </p>
     }
 
@@ -67,17 +78,20 @@ export default ({ data }) => {
                 <h2 itemProp="name">{ data.song.title }</h2>
                 { lyricsMicrodata }
                 { musicMicrodata }
-                <div itemProp="lyrics" itemScope itemType="https://schema.org/CreativeWork">
+                <div className="lyrics"
+                    itemProp="lyrics"
+                    itemScope itemType="https://schema.org/CreativeWork">
                     <div itemProp="text">{ lyrics }</div>
                 </div>
+                { creator }
                 <div itemProp="recordedAs"
-                    itemScope itemType="https://schema.org/MusicRecording">
+                    itemScope itemType="https://schema.org/MusicRecording"
+                    className="credits">
                     <span itemProp="inAlbum"
                           itemScope itemType="https://schema.org/MusicAlbum">
                         { album }
                     </span>
                 </div>
-                { creator }
             </div>
         </Layout>
     )
@@ -102,6 +116,12 @@ export const query = graphql`
                     name,
                     sameAs
                 }
+            }
+        },
+        site {
+            siteMetadata {
+                about,
+                aboutName
             }
         }
     }
