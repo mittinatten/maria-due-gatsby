@@ -23,7 +23,7 @@ export default ({ data }) => {
                 <ol>
                     { album.fields.songs.map(song =>
                         <li itemProp="track" itemScope itemType="https://schema.org/MusicRecording" key={song.title}>
-                            <a href={song.slug}>
+                            <a href={song.slug} itemProp="sameAs">
                                 <span itemProp="name">{ song.title }</span>
                             </a>
                         </li>)

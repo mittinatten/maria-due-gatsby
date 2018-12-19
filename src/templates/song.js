@@ -19,8 +19,10 @@ export default ({ data }) => {
     if (data.song.album && fields && fields.albumSlug) {
         album =
             <p style={{marginTop: '2em'}}>
-                From the album <a href={fields.albumSlug} itemProp="name">
-                    { data.song.album.title }
+                From the album <a itemProp="sameAs" href={fields.albumSlug}>
+                    <span itemProp="name">
+                        { data.song.album.title }
+                    </span>
                 </a> <span itemProp="datePublished">{ data.song.album.year }</span>.
             </p>
     }
