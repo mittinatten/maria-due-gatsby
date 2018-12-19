@@ -3,6 +3,8 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 
+import "./song.css";
+
 export default ({ data }) => {
     let lyrics;
     let album;
@@ -11,7 +13,7 @@ export default ({ data }) => {
 
     if (data.song.lyrics) {
         lyrics = data.song.lyrics.split('\n').map((line, index) =>
-            <div key={index} style={{textIndent: '-1em', marginLeft: '1em', minHeight: '1em' }}>{ line }</div>);
+            <div key={index} className="textline">{ line }</div>);
     }
 
     if (data.song.album && fields && fields.albumSlug) {
@@ -23,50 +25,49 @@ export default ({ data }) => {
             </p>
     }
 
-    if (fields && fields.lyricsBy && fields.musicBy) {
-        let display;
-        if (JSON.stringify(fields.lyricsBy) === JSON.stringify(fields.musicBy)) {
-            const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
-            display =
-                <p>
-                    Words and music by {lyricsByNames}.
-                </p>
-        } else {
-            const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
-            const musicByNames = fields.musicBy.map(person => person.name).join(', ');
-            display =
-                <p>
-                    Lyrics by {lyricsByNames}, music by {musicByNames}.
-                </p>
-        }
-
-        const lyricsMicrodata = fields.lyricsBy.map(person =>
-            <span style={{display: 'none'}}
-                itemProp="lyricist"
-                itemScope itemType="https://schema.org/Person"
-                key={person.sameAs}>
-                <span itemProp="sameAs">{person.sameAs}</span>
-                <span itemProp="name">{person.name}</span>
-            </span>
-        );
-
-        const musicMicrodata = fields.musicBy.map(person =>
-            <span style={{display: 'none'}}
-                itemProp="composer"
-                itemScope itemType="https://schema.org/Person" key={person.sameAs}>
-                <span itemProp="sameAs">{person.sameAs}</span>
-                <span itemProp="name">{person.name}</span>
-            </span>
-        );
-
-        creator = <div>{ display } { lyricsMicrodata } { musicMicrodata }</div>
+    if (JSON.stringify(fields.lyricsBy) === JSON.stringify(fields.musicBy)) {
+        const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
+        creator =
+            <p>
+                Words and music by {lyricsByNames}.
+            </p>
+    } else {
+        const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
+        const musicByNames = fields.musicBy.map(person => person.name).join(', ');
+        creator =
+            <p>
+                Lyrics by {lyricsByNames}, music by {musicByNames}.
+            </p>
     }
+
+    const lyricsMicrodata = fields.lyricsBy.map(person =>
+        <span style={{display: 'none'}}
+            itemProp="lyricist"
+            itemScope itemType="https://schema.org/Person"
+            key={person.sameAs}>
+            <span itemProp="sameAs">{person.sameAs}</span>
+            <span itemProp="name">{person.name}</span>
+        </span>
+    );
+
+    const musicMicrodata = fields.musicBy.map(person =>
+        <span style={{display: 'none'}}
+            itemProp="composer"
+            itemScope itemType="https://schema.org/Person" key={person.sameAs}>
+            <span itemProp="sameAs">{person.sameAs}</span>
+            <span itemProp="name">{person.name}</span>
+        </span>
+    );
 
     return (
         <Layout>
             <div itemScope itemType="https://schema.org/MusicComposition">
                 <h2 itemProp="name">{ data.song.title }</h2>
-                <div itemProp="lyrics">{ lyrics }</div>
+                { lyricsMicrodata }
+                { musicMicrodata }
+                <div itemProp="lyrics" itemScope itemType="https://schema.org/CreativeWork">
+                    <div itemProp="text">{ lyrics }</div>
+                </div>
                 <div itemProp="isPartOf"
                     itemScope itemType="https://schema.org/MusicAlbum">
                     { album }
