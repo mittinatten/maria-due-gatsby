@@ -43,6 +43,7 @@ module.exports = {
             options: {
                 projectId: 'zp0hhhsi',
                 dataset: 'production',
+                stringifyPattern: '_toString',
                 queries: [
                     {
                         name: 'albums',
@@ -92,7 +93,11 @@ module.exports = {
                     {
                         name: 'frontMatter',
                         type: 'FrontMatter',
-                        groq: `*[_type == 'frontMatter']`
+                        groq: `*[_type == 'frontMatter']{
+                            _id,
+                            title,
+                            "body_toString": body
+                        }`
                     },
                     {
                         name: 'videos',

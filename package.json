@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Simon Mitternacht <simon.mitternacht@gmail.com>",
   "dependencies": {
+    "@sanity/block-content-to-react": "^2.0.5",
     "gatsby": "^2.0.19",
     "gatsby-plugin-manifest": "^2.0.5",
     "gatsby-plugin-offline": "^2.0.5",
