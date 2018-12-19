@@ -17,33 +17,62 @@ export default ({ data }) => {
     if (data.song.album && fields && fields.albumSlug) {
         album =
             <p style={{marginTop: '2em'}}>
-                From the album <a href={fields.albumSlug}>{ data.song.album.title }</a> { data.song.album.year }.
+                From the album <a href={fields.albumSlug} itemProp="name">
+                    { data.song.album.title }
+                </a> <span itemProp="datePublished">{ data.song.album.year }</span>.
             </p>
     }
 
     if (fields && fields.lyricsBy && fields.musicBy) {
+        let display;
         if (JSON.stringify(fields.lyricsBy) === JSON.stringify(fields.musicBy)) {
             const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
-            creator =
+            display =
                 <p>
                     Words and music by {lyricsByNames}.
                 </p>
         } else {
             const lyricsByNames = fields.lyricsBy.map(person => person.name).join(', ');
             const musicByNames = fields.musicBy.map(person => person.name).join(', ');
-            creator =
+            display =
                 <p>
                     Lyrics by {lyricsByNames}, music by {musicByNames}.
                 </p>
         }
+
+        const lyricsMicrodata = fields.lyricsBy.map(person =>
+            <span style={{display: 'none'}}
+                itemProp="lyricist"
+                itemScope itemType="https://schema.org/Person"
+                key={person.sameAs}>
+                <span itemProp="sameAs">{person.sameAs}</span>
+                <span itemProp="name">{person.name}</span>
+            </span>
+        );
+
+        const musicMicrodata = fields.musicBy.map(person =>
+            <span style={{display: 'none'}}
+                itemProp="composer"
+                itemScope itemType="https://schema.org/Person" key={person.sameAs}>
+                <span itemProp="sameAs">{person.sameAs}</span>
+                <span itemProp="name">{person.name}</span>
+            </span>
+        );
+
+        creator = <div>{ display } { lyricsMicrodata } { musicMicrodata }</div>
     }
 
     return (
         <Layout>
-            <h2>{ data.song.title }</h2>
-            { lyrics }
-            { album }
-            { creator }
+            <div itemScope itemType="https://schema.org/MusicComposition">
+                <h2 itemProp="name">{ data.song.title }</h2>
+                <div itemProp="lyrics">{ lyrics }</div>
+                <div itemProp="isPartOf"
+                    itemScope itemType="https://schema.org/MusicAlbum">
+                    { album }
+                </div>
+                { creator }
+            </div>
         </Layout>
     )
 }

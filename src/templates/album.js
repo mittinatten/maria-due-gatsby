@@ -7,6 +7,7 @@ import "./album.css"
 
 export default ({ data }) => {
     const album = data.album;
+    const { about, aboutName } = data.site.siteMetadata;
     let songs;
     let play;
     let release;
@@ -21,7 +22,11 @@ export default ({ data }) => {
             <div>
                 <ol>
                     { album.fields.songs.map(song =>
-                        <li key={song.title}><a href={song.slug}>{ song.title }</a></li>)
+                        <li itemProp="track" itemScope itemType="https://schema.org/MusicRecording" key={song.title}>
+                            <a href={song.slug}>
+                                <span itemProp="name">{ song.title }</span>
+                            </a>
+                        </li>)
                     }
                 </ol>
             </div>;
@@ -49,13 +54,23 @@ export default ({ data }) => {
             name = album.producer.name;
         }
 
-        producer = <span>Produced by { name }.</span>;
+        producer =
+            <span itemProp="contributor" itemScope itemType="https://schema.org/Person">
+                Produced by <span itemProp="name">{ name }</span>.
+                <span itemProp="sameAs" style={{display: 'none'}}>{album.producer.sameAs}</span>
+            </span>;
     }
 
     return (
         <Layout>
-            <div itemProp="albumRelease" itemScope itemType="https://schema.org/MusicRelease" style={{marginBottom: '1rem'}}>
+            <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title}</span></h2>
+                <span style={{display: 'none'}}
+                    itemProp="byArtist"
+                    itemScope itemType="https://schema.org/MusicGroup">
+                    <span itemProp="name">{aboutName}</span>
+                    <span itemProp="sameAs">{about}</span>
+                </span>
                 <div className="album">
                     <div className="cover">
                         <AlbumCover album={album}></AlbumCover>
@@ -87,13 +102,20 @@ export const query = graphql`
             },
             producer {
                 name,
-                homePage
+                homePage,
+                sameAs
             },
             fields {
                 songs {
                     title,
                     slug
                 }
+            }
+        },
+        site {
+            siteMetadata {
+                about,
+                aboutName
             }
         }
     }

@@ -64,7 +64,8 @@ module.exports = {
                             },
                             producer {
                                 name,
-                                homePage
+                                homePage,
+                                sameAs
                             }
                         }`
                     },

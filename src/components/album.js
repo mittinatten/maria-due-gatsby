@@ -3,8 +3,7 @@ import AlbumCover from "./album-cover";
 
 class Album extends Component {
     render(data) {
-        const album = this.props.album;
-        const artist = this.props.artist;
+        const { album, artistName, artistSameAs } = this.props;
 
         return (
             <div itemScope itemType="https://schema.org/MusicAlbum"
@@ -14,14 +13,19 @@ class Album extends Component {
                     flexDirection: 'column',
                     marginBottom: '1rem'
                 }}>
-                <span style={{display: 'none'}} itemProp="byArtist" itemScope itemType="https://schema.org/MusicGroup">{artist}</span>
+                <span style={{display: 'none'}} itemProp="byArtist">
+                    <span itemScope itemType="https://schema.org/MusicGroup">
+                        <span itemProp="sameAs">{artistSameAs}</span>
+                        <span itemProp="name">{artistName}</span>
+                    </span>
+                </span>
                 <div style={{flex: 8 }}>
                     <a href={album.fields.slug}>
                         <AlbumCover album={album}></AlbumCover>
                     </a>
                 </div>
-                <div itemProp="name" style={{flex: 1}}>
-                    <a href={album.fields.slug}>{album.title}</a>
+                <div style={{flex: 1}}>
+                    <a href={album.fields.slug} itemProp="name">{album.title}</a>
                 </div>
             </div>
         );

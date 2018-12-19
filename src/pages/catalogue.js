@@ -8,7 +8,9 @@ import Work from '../components/work';
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
         <div style={{minHeight: '200px'}}  key={edge.node._id}>
-            <Album album={edge.node} artist={data.site.siteMetadata.about}/>
+            <Album album={edge.node}
+                artistName={data.site.siteMetadata.aboutName}
+                artistSameAs={data.site.siteMetadata.about}/>
         </div>
     );
 
@@ -63,7 +65,8 @@ export const query = graphql`
         }
         site {
             siteMetadata {
-                about
+                about,
+                aboutName
             }
         }
     }
