@@ -32,7 +32,7 @@ module.exports = {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
                 host: 'https://mariadue.net',
-                policy: [{ userAgent: '*', disallow: '/' }]
+                policy: [{ userAgent: '*', allow: '/' }]
             }
         },
         'gatsby-plugin-offline',
