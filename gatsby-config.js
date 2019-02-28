@@ -6,8 +6,7 @@ module.exports = {
         siteUrl: 'https://mariadue.net', // necessary for robots.txt
         about: 'https://www.wikidata.org/wiki/Q17143368',
         aboutName: 'Maria Due',
-        keywords: 'music, Maria Due',
-        robots: 'noindex, nofollow' // TODO: change this when finished!
+        keywords: 'music, Maria Due'
     },
     plugins: [
         'gatsby-plugin-react-helmet',
