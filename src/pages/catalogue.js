@@ -9,7 +9,8 @@ import Work from '../components/work';
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
         <div style={{minHeight: '200px'}}  key={edge.node._id}
-            itemProp="album">
+            itemProp="album"
+            itemScope itemType="https://schema.org/MusicAlbum">
             <Album album={edge.node} />
         </div>
     );

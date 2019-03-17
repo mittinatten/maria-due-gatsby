@@ -10,7 +10,7 @@ export class Concert extends Component {
             </span>;
         const titleLink = concert.eventURL ? <a href={concert.eventURL}>{title}</a> : title;
         return (
-            <div itemScope itemType="https://schema.org/MusicEvent">
+            <div>
                 <h3>{titleLink}</h3>
                 <p itemProp="description">{concert.description}</p>
             </div>

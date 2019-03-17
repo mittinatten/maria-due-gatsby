@@ -7,7 +7,8 @@ import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
     const concerts = data.allConcert.edges.map(edge =>
-        <div itemProp="event" key={edge.node._id}>
+        <div itemProp="event" key={edge.node._id}
+            itemScope itemType="https://schema.org/MusicEvent">
             <Concert concert={edge.node} />
         </div>
     );
