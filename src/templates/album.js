@@ -67,11 +67,15 @@ export default ({ data }) => {
             </span>;
     }
 
+    const meta = [];
+    if (album.cover && album.cover.asset) {
+        meta.push({ name: 'og:image', content: album.cover.asset.url});
+    }
+
     return (
         <Layout>
-            <Helmet>
+            <Helmet meta={meta}>
                 <title>Maria Due - {album.title} (album)</title>
-                {album.cover && album.cover.asset ? <meta property="og:image">{album.cover.asset.url}</meta> : ''}
             </Helmet>
             <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title}</span></h2>
