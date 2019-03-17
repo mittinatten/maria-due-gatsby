@@ -71,6 +71,7 @@ export default ({ data }) => {
         <Layout>
             <Helmet>
                 <title>Maria Due - {album.title} (album)</title>
+                {album.cover && album.cover.asset ? <meta property="og:image">{album.cover.asset.url}</meta> : ''}
             </Helmet>
             <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title}</span></h2>
