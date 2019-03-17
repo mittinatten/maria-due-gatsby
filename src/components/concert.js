@@ -9,6 +9,12 @@ export const Concert = ({ concert }) => {
                 <div itemProp="startDate" style={{fontSize: '1.2rem'}}>
                     {concert.date.replace(/T.*$/, '')}
                 </div>
+                <span itemProp="endDate" style={{display: 'none'}}>
+                    {concert.date.replace(/T.*$/, '')}
+                </span>
+                <span itemProp="name" style={{display: 'none'}}>
+                    Maria Due at {concert.venue}
+                </span>
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
                     style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}
                 >

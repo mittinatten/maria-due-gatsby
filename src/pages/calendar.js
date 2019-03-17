@@ -6,41 +6,53 @@ import Layout from '../components/layout';
 import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
+    const { about, aboutName } = data.site.siteMetadata;
+
     const concerts = data.allConcert.edges.map(edge =>
         <div itemProp="event" key={edge.node._id}
             itemScope itemType="https://schema.org/MusicEvent">
+            <span style={{display: 'none'}} itemProp="performer"
+                itemScope itemType="https://schema.org/MusicGroup">
+                <span itemProp="name">{aboutName}</span>
+                <span itemProp="sameAs">{about}</span>
+            </span>
             <Concert concert={edge.node} />
         </div>
     );
 
     return(
-            <Layout>
-                <Helmet>
-                    <title>Maria Due - Calendar</title>
-                </Helmet>
-                { concerts }
-            </Layout>
+        <Layout>
+            <Helmet>
+                <title>Maria Due - Calendar</title>
+            </Helmet>
+            { concerts }
+        </Layout>
     );
 }
 
 export const query = graphql`
-  query {
-    allConcert(sort: {fields: [ date ], order: ASC} ) {
-      totalCount,
-      edges {
-        node {
-          _id,
-          venue,
-          date,
-          description,
-          eventURL,
-          city,
-          country
+    query {
+        allConcert(sort: {fields: [ date ], order: ASC} ) {
+            totalCount,
+            edges {
+                node {
+                    _id,
+                    venue,
+                    date,
+                    description,
+                    eventURL,
+                    city,
+                    country
+                }
+            }
         }
-      }
+        site {
+            siteMetadata {
+                about,
+                aboutName
+            }
+        }
     }
-  }
 `;
-
 
 export default ConcertPage
