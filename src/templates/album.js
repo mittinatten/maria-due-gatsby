@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from 'react-helmet'
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
@@ -68,6 +69,9 @@ export default ({ data }) => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Maria Due - {album.title} (album)</title>
+            </Helmet>
             <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title}</span></h2>
                 <span style={{display: 'none'}}

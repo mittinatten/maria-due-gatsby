@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Helmet from 'react-helmet'
 
 import Layout from "../components/layout";
 
@@ -74,6 +75,9 @@ export default ({ data }) => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Maria Due - { data.song.title } (song)</title>
+            </Helmet>
             <div itemScope itemType="https://schema.org/MusicComposition">
                 <h2 itemProp="name">{ data.song.title }</h2>
                 { lyricsMicrodata }

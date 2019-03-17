@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet'
 
 import Layout from '../components/layout';
 import Album from '../components/album';
@@ -20,6 +21,9 @@ export const AlbumPage = ({ data }) => {
 
     return(
             <Layout>
+                <Helmet>
+                    <title>Maria Due - Catalogue</title>
+                </Helmet>
                 <div itemScope itemType="https://schema.org/MusicGroup">
                     <span style={{display: 'none'}}>
                         <span itemProp="name">{data.site.siteMetadata.aboutName}</span>

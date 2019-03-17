@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet'
 
 import Layout from '../components/layout';
 import Concert from '../components/concert';
@@ -11,6 +12,9 @@ export const ConcertPage = ({ data }) => {
 
     return(
             <Layout>
+                <Helmet>
+                    <title>Maria Due - Calendar</title>
+                </Helmet>
                 { concerts }
             </Layout>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet'
 
 import Layout from '../components/layout';
 import Video from '../components/video';
@@ -11,6 +12,9 @@ export const VideoPage = ({ data }) => {
 
     return(
             <Layout>
+                <Helmet>
+                    <title>Maria Due - Videos</title>
+                </Helmet>
                 <div className='cards'>
                 { videos }
                 </div>
