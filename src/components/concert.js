@@ -5,7 +5,7 @@ export const Concert = ({ concert }) => {
         <div style={{display: 'flex', cursor: concert.eventURL ? 'pointer' : 'default'}}
             onClick={() => concert.eventURL ? window.open(concert.eventURL) : null}
         >
-            <div style={{width: 150}}>
+            <div style={{minWidth: 150, maxWidth: 150}}>
                 <div itemProp="startDate" style={{fontSize: '1.2rem'}}>
                     {concert.date.replace(/T.*$/, '')}
                 </div>
