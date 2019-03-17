@@ -1,6 +1,12 @@
 import React from "react";
+import image from '../images/default.jpg';
 
 export const Concert = ({ concert }) => {
+    let imageURL = image;
+    if (!/^http/.test(image)) {
+        imageURL = window.location.protocol + window.location.host + image;
+    }
+
     return (
         <div style={{display: 'flex', cursor: concert.eventURL ? 'pointer' : 'default'}}
             onClick={() => concert.eventURL ? window.open(concert.eventURL) : null}
@@ -9,11 +15,11 @@ export const Concert = ({ concert }) => {
                 <div itemProp="startDate" style={{fontSize: '1.2rem'}}>
                     {concert.date.replace(/T.*$/, '')}
                 </div>
-                <span itemProp="endDate" style={{display: 'none'}}>
-                    {concert.date.replace(/T.*$/, '')}
-                </span>
-                <span itemProp="name" style={{display: 'none'}}>
-                    Maria Due at {concert.venue}
+                <span style={{display: 'none'}}>
+                    <span itemProp="endDate">{concert.date.replace(/T.*$/, '')}</span>
+                    <span itemProp="name">Maria Due at {concert.venue}</span>
+                    <span itemProp="image">{imageURL}</span>
+                    { concert.eventURL ? <span itemProp="sameAs">{concert.eventURL}</span> : '' }
                 </span>
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
                     style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}
@@ -30,7 +36,6 @@ export const Concert = ({ concert }) => {
                 <h3 style={{marginBottom: '0.5rem', textDecoration: concert.eventURL ? 'underline' : 'none'}}>
                     {concert.venue}
                 </h3>
-
                 <p itemProp="description">{concert.description}</p>
             </div>
         </div>
