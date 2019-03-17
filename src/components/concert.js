@@ -1,12 +1,6 @@
 import React from "react";
-import image from '../images/default.jpg';
 
 export const Concert = ({ concert }) => {
-    let imageURL = image;
-    if (!/^http/.test(image)) {
-        imageURL = window.location.protocol + window.location.host + image;
-    }
-
     return (
         <div style={{display: 'flex', cursor: concert.eventURL ? 'pointer' : 'default'}}
             onClick={() => concert.eventURL ? window.open(concert.eventURL) : null}
@@ -18,7 +12,6 @@ export const Concert = ({ concert }) => {
                 <span style={{display: 'none'}}>
                     <span itemProp="endDate">{concert.date.replace(/T.*$/, '')}</span>
                     <span itemProp="name">Maria Due at {concert.venue}</span>
-                    <span itemProp="image">{imageURL}</span>
                     { concert.eventURL ? <span itemProp="sameAs">{concert.eventURL}</span> : '' }
                 </span>
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
