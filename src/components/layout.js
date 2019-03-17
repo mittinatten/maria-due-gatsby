@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header';
 import './style.css';
-import image from '../images/maria-due-the-colour-white.jpg'
+import image from '../images/mariadue-the-colour-white.jpg'
 
 const Layout = ({ children }) => (
   <StaticQuery
