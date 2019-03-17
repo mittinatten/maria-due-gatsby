@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header';
 import './style.css';
+import image from '../images/maria-due-the-colour-white.jpg'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -27,6 +28,7 @@ const Layout = ({ children }) => (
             { name: 'description', content: data.site.siteMetadata.description },
             { name: 'keywords', content: data.site.siteMetadata.keywords },
             { name: 'google-site-verification', content: 'zo-B2TdZe7lSw-ZoS0usXLKmwI380HjWKWlsSzFKVa8' },
+            { name: 'og:image', content: image }
           ]}
           link={[
             {
@@ -40,13 +42,17 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
+        <div itemScope itemType="https://schema.org/MusicGroup"
           style={{
             margin: '0 auto',
             maxWidth: 800,
             padding: '0px 1.0875rem 1.45rem',
           }}
         >
+          <span style={{display: 'none'}}>
+            <span itemProp="name">{data.site.siteMetadata.aboutName}</span>
+            <span itemProp="sameAs">{data.site.siteMetadata.about}</span>
+          </span>
           {children}
         </div>
       </>

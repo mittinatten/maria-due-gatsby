@@ -1,13 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet'
+import Helmet from 'react-helmet';
 
 import Layout from '../components/layout';
 import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
     const concerts = data.allConcert.edges.map(edge =>
-        <Concert concert={edge.node} key={edge.node._id} />
+        <Concert itemProp="event" concert={edge.node} key={edge.node._id} />
     );
 
     return(
@@ -29,7 +29,9 @@ export const query = graphql`
           _id,
           venue,
           date,
-          description
+          description,
+          eventURL,
+          city
         }
       }
     }

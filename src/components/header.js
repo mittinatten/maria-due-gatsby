@@ -4,7 +4,7 @@ import './header.css';
 
 const menuItems = [
     { link: '/catalogue', label: 'Catalogue' },
-    //{ link: '/calendar', label: 'Calendar' },
+    { link: '/calendar', label: 'Calendar' },
     { link: '/videos', label: 'Videos' },
     { link: '/about', label: 'About' }
 ]
