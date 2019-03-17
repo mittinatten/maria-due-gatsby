@@ -7,7 +7,9 @@ import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
     const concerts = data.allConcert.edges.map(edge =>
-        <Concert itemProp="event" concert={edge.node} key={edge.node._id} />
+        <div itemProp="event" key={edge.node._id}>
+            <Concert concert={edge.node} />
+        </div>
     );
 
     return(

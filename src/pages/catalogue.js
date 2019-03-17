@@ -9,8 +9,7 @@ import Work from '../components/work';
 export const AlbumPage = ({ data }) => {
     const albums = data.allAlbum.edges.map(edge =>
         <div style={{minHeight: '200px'}}  key={edge.node._id}
-            itemProp="album"
-            itemScope itemType="https://schema.org/MusicAlbum">
+            itemProp="album">
             <Album album={edge.node} />
         </div>
     );
@@ -24,13 +23,7 @@ export const AlbumPage = ({ data }) => {
                 <Helmet>
                     <title>Maria Due - Catalogue</title>
                 </Helmet>
-                <div itemScope itemType="https://schema.org/MusicGroup">
-                    <span style={{display: 'none'}}>
-                        <span itemProp="name">{data.site.siteMetadata.aboutName}</span>
-                        <span itemProp="sameAs">{data.site.siteMetadata.about}</span>
-                    </span>
-                    <div className="cards">{ albums }</div>
-                </div>
+                <div className="cards">{ albums }</div>
                 <h2>Collaborations</h2>
                 { appearsOn }
             </Layout>
@@ -71,12 +64,6 @@ export const query = graphql`
                         homePage
                     }
                 }
-            }
-        }
-        site {
-            siteMetadata {
-                about,
-                aboutName
             }
         }
     }
