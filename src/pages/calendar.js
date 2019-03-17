@@ -25,7 +25,7 @@ export const ConcertPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allConcert {
+    allConcert(sort: {fields: [ date ], order: ASC} ) {
       totalCount,
       edges {
         node {
@@ -34,7 +34,8 @@ export const query = graphql`
           date,
           description,
           eventURL,
-          city
+          city,
+          country
         }
       }
     }
