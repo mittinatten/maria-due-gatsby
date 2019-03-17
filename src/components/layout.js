@@ -15,7 +15,9 @@ const Layout = ({ children }) => (
           siteMetadata {
             title,
             description,
-            url
+            url,
+            about,
+            aboutName
           }
         }
       }
