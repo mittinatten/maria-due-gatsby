@@ -22,7 +22,9 @@ export const ConcertPage = ({ data }) => {
 
     return(
         <Layout>
-            <Helmet>
+            <Helmet meta={[
+                { name: 'description', content: 'Concert calendar for Maria Due.'}
+            ]}>
                 <title>Maria Due - Calendar</title>
             </Helmet>
             { concerts }

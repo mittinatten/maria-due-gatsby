@@ -21,7 +21,9 @@ export const AlbumPage = ({ data }) => {
 
     return(
             <Layout>
-                <Helmet>
+                <Helmet meta={[
+                    { name: 'description', content: 'List of albums by Maria Due and collaborations'}
+                ]}>
                     <title>Maria Due - Catalogue</title>
                 </Helmet>
                 <div className="cards">{ albums }</div>
