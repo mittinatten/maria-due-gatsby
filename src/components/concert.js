@@ -9,15 +9,13 @@ export const Concert = ({ concert }) => {
                 <div itemProp="startDate" style={{fontSize: '1.2rem'}}>
                     {concert.date.replace(/T.*$/, '')}
                 </div>
-                <span style={{display: 'none'}}>
-                    <span itemProp="endDate">{concert.date.replace(/T.*$/, '')}</span>
-                    <span itemProp="name">Maria Due at {concert.venue}</span>
-                    { concert.eventURL ? <span itemProp="sameAs">{concert.eventURL}</span> : '' }
-                </span>
+                <meta itemProp="endDate" content={concert.date.replace(/T.*$/, '')} />
+                <meta itemProp="name" content={'Maria Due at ' + concert.venue} />
+                { concert.eventURL ? <meta itemProp="sameAs" content={concert.eventURL} /> : '' }
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
                     style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}
                 >
-                    <span itemProp="name" style={{display: 'none'}}>{concert.venue}</span>
+                    <meta itemProp="name" content={concert.venue} />
                     <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                         <span itemProp="addressLocality">{concert.city}</span>
                         {', '}

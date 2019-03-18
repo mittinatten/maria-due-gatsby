@@ -51,10 +51,8 @@ const Layout = ({ children }) => (
             padding: '0px 1.0875rem 1.45rem',
           }}
         >
-          <span style={{display: 'none'}}>
-            <span itemProp="name">{data.site.siteMetadata.aboutName}</span>
-            <span itemProp="sameAs">{data.site.siteMetadata.about}</span>
-          </span>
+          <meta itemProp="name" content={data.site.siteMetadata.aboutName} />
+          <meta itemProp="sameAs" content={data.site.siteMetadata.about} />
           {children}
         </div>
       </>

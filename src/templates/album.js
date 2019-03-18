@@ -79,11 +79,11 @@ export default ({ data }) => {
             </Helmet>
             <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title}</span></h2>
-                <span style={{display: 'none'}}
+                <span
                     itemProp="byArtist"
                     itemScope itemType="https://schema.org/MusicGroup">
-                    <span itemProp="name">{aboutName}</span>
-                    <span itemProp="sameAs">{about}</span>
+                    <meta itemProp="name" content={aboutName} />
+                    <meta itemProp="sameAs" content={about} />
                 </span>
                 <div className="album">
                     <div className="cover">

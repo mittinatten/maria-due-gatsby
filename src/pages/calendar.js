@@ -11,10 +11,10 @@ export const ConcertPage = ({ data }) => {
     const concerts = data.allConcert.edges.map(edge =>
         <div itemProp="event" key={edge.node._id}
             itemScope itemType="https://schema.org/MusicEvent">
-            <span style={{display: 'none'}} itemProp="performer"
+            <span itemProp="performer"
                 itemScope itemType="https://schema.org/MusicGroup">
-                <span itemProp="name">{aboutName}</span>
-                <span itemProp="sameAs">{about}</span>
+                <meta itemProp="name" content={aboutName} />
+                <meta itemProp="sameAs" content={about} />
             </span>
             <Concert concert={edge.node} />
         </div>

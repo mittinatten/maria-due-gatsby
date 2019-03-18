@@ -24,7 +24,7 @@ export default ({ data }) => {
                 Recorded by&nbsp;
                 <span itemProp="byArtist" itemScope itemType="https://schema.org/MusicGroup">
                     <span itemProp="name">{aboutName}</span>
-                    <span itemProp="sameAs" style={{display: 'none'}}>{about}</span>
+                    <meta itemProp="sameAs" content={about} />
                 </span>
                 &nbsp;in&nbsp;
                 <span itemProp="datePublished">{ data.song.album.year }</span>
