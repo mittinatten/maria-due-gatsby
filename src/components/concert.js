@@ -11,6 +11,8 @@ export const Concert = ({ concert }) => {
                 </div>
                 <meta itemProp="endDate" content={concert.date.replace(/T.*$/, '')} />
                 <meta itemProp="name" content={'Maria Due at ' + concert.venue} />
+                <meta itemProp="offers" content="" />
+                <meta itemProp="image" content="" />
                 { concert.eventURL ? <meta itemProp="sameAs" content={concert.eventURL} /> : '' }
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
                     style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}
