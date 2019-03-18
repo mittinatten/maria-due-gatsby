@@ -12,7 +12,9 @@ export const VideoPage = ({ data }) => {
 
     return(
             <Layout>
-                <Helmet>
+                <Helmet meta={[
+                    { name: 'description', content: 'Music videos by Maria Due' }
+                ]}>
                     <title>Maria Due - Videos</title>
                 </Helmet>
                 <div className='cards'>
