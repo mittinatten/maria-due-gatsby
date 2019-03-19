@@ -1,12 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import BlockContent from '@sanity/block-content-to-react';
+import Helmet from 'react-helmet';
 
 import Layout from '../components/layout';
 
 export const IndexPage = ({ data }) => {
     return(
             <Layout>
+                <Helmet meta={[
+                    { name: 'description', content: data.frontMatter.title },
+                    { name: 'og:image', content: data.frontMatter.image.asset.url }
+                ]} />
                 <h2>{data.frontMatter.title}</h2>
                 <div style={{display: 'flex', flexWrap: 'no-wrap'}}>
                     <div style={{maxWidth: '40%', margin: '0 1rem' }}>
