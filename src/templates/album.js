@@ -79,10 +79,9 @@ export default ({ data }) => {
         <Layout>
             <Helmet meta={meta}>
                 <title>Maria Due - {album.title} (album)</title>
-
             </Helmet>
             <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
-                <h2>{play}<span itemProp="name">{album.title}</span></h2>
+                <h2>{play}<span itemProp="name">{album.title} ({album.year})</span></h2>
                 <span
                     itemProp="byArtist"
                     itemScope itemType="https://schema.org/MusicGroup">
