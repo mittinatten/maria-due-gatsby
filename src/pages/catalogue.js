@@ -7,11 +7,11 @@ import Album from '../components/album';
 import Work from '../components/work';
 
 export const AlbumPage = ({ data }) => {
+    const { aboutName } = data.site.siteMetadata;
+
     const albums = data.allAlbum.edges.map(edge =>
-        <div style={{minHeight: '200px'}}  key={edge.node._id}
-            itemProp="album"
-            itemScope itemType="https://schema.org/MusicAlbum">
-            <Album album={edge.node} />
+        <div style={{minHeight: '200px'}}  key={edge.node._id}>
+            <Album album={edge.node} {...data.site.siteMetadata} />
         </div>
     );
 
@@ -22,9 +22,9 @@ export const AlbumPage = ({ data }) => {
     return(
             <Layout>
                 <Helmet meta={[
-                    { name: 'description', content: 'List of albums by Maria Due and collaborations'}
+                    { name: 'description', content: 'List of albums by ' + {aboutName} + ' and collaborations'}
                 ]}>
-                    <title>Maria Due - Catalogue</title>
+                    <title>{aboutName} - Catalogue</title>
                 </Helmet>
                 <div className="cards">{ albums }</div>
                 <h2>Collaborations</h2>
@@ -43,6 +43,11 @@ export const query = graphql`
                     title,
                     year,
                     spotify,
+                    producer {
+                        name,
+                        homePage,
+                        sameAs
+                    },
                     cover {
                         asset {
                             url
@@ -67,6 +72,13 @@ export const query = graphql`
                         homePage
                     }
                 }
+            }
+        },
+        site {
+            siteMetadata {
+                about,
+                aboutName,
+                siteUrl
             }
         }
     }

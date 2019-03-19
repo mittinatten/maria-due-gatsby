@@ -31,7 +31,8 @@ export const Concert = ({ concert, siteUrl, aboutName, about }) => {
                         performers: {
                             '@type': 'MusicGroup',
                             name: aboutName,
-                            sameAs: about
+                            sameAs: about,
+                            url: siteUrl
                         }
                     })}
                 </script>

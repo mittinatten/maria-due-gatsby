@@ -78,7 +78,7 @@ export default ({ data }) => {
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>
-                <title>Maria Due - { data.song.title } (song)</title>
+                <title>{aboutName} - { data.song.title } (song)</title>
             </Helmet>
             <div itemScope itemType="https://schema.org/MusicComposition">
                 <h2 itemProp="name">{ data.song.title }</h2>

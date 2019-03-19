@@ -4,11 +4,12 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import AlbumCover from "../components/album-cover";
+import { albumMetadata } from '../components/album';
 import "./album.css"
 
 export default ({ data }) => {
     const album = data.album;
-    const { about, aboutName } = data.site.siteMetadata;
+    const { about, aboutName, siteUrl } = data.site.siteMetadata;
     let songs;
     let play;
     let release;
@@ -23,15 +24,8 @@ export default ({ data }) => {
             <div>
                 <ol>
                     { album.fields.songs.map(song =>
-                        <li itemProp="track"
-                            itemScope itemType="https://schema.org/MusicRecording"
-                            key={song.title}>
-                            <span itemProp="recordingOf"
-                                itemScope itemType="https://schema.org/MusicComposition">
-                                <a href={song.slug} itemProp="sameAs">
-                                    <span itemProp="name">{ song.title }</span>
-                                </a>
-                            </span>
+                        <li key={song.slug}>
+                            <a href={song.slug}>{ song.title }</a>
                         </li>)
                     }
                 </ol>
@@ -61,9 +55,8 @@ export default ({ data }) => {
         }
 
         producer =
-            <span itemProp="producer" itemScope itemType="https://schema.org/Person">
+            <span>
                 Produced by <span itemProp="name">{ name }</span>.
-                <span itemProp="sameAs" style={{display: 'none'}}>{album.producer.sameAs}</span>
             </span>;
     }
 
@@ -78,16 +71,23 @@ export default ({ data }) => {
     return (
         <Layout>
             <Helmet meta={meta}>
-                <title>Maria Due - {album.title} (album)</title>
+                <title>{aboutName} - {album.title} (album)</title>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        ...albumMetadata({ aboutName, about, album }),
+                        track: album.fields.songs.map(song => ({
+                            '@type': 'MusicRecording',
+                            recordingOf: {
+                                '@type': 'MusicComposition',
+                                name: song.title,
+                                url: siteUrl + song.slug
+                            }
+                        }))
+                    })}
+                </script>
             </Helmet>
-            <div itemScope itemType="https://schema.org/MusicAlbum" style={{marginBottom: '1rem'}}>
+            <div style={{marginBottom: '1rem'}}>
                 <h2>{play}<span itemProp="name">{album.title} ({album.year})</span></h2>
-                <span
-                    itemProp="byArtist"
-                    itemScope itemType="https://schema.org/MusicGroup">
-                    <meta itemProp="name" content={aboutName} />
-                    <meta itemProp="sameAs" content={about} />
-                </span>
                 <div className="album">
                     <div className="cover">
                         <AlbumCover album={album}></AlbumCover>
@@ -132,7 +132,8 @@ export const query = graphql`
         site {
             siteMetadata {
                 about,
-                aboutName
+                aboutName,
+                siteUrl
             }
         }
     }
