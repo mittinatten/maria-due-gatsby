@@ -7,8 +7,13 @@ import Layout from '../components/layout';
 export const IndexPage = ({ data }) => {
     return(
             <Layout>
-            <h2>{data.frontMatter.title}</h2>
-            <BlockContent blocks={JSON.parse(data.frontMatter.body_toString)} />
+                <h2>{data.frontMatter.title}</h2>
+                <div style={{display: 'flex', flexWrap: 'no-wrap'}}>
+                    <div style={{maxWidth: '40%', margin: '0 1rem' }}>
+                        <img src={data.frontMatter.image.asset.url} alt="Illustration" />
+                    </div>
+                    <BlockContent blocks={JSON.parse(data.frontMatter.body_toString)} />
+                </div>
             </Layout>
     );
 }
@@ -20,7 +25,12 @@ export const query = graphql`
     frontMatter {
         _id,
         body_toString,
-        title
+        title,
+        image {
+            asset {
+                url
+            }
+        }
     }
   }
 `;

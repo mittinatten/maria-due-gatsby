@@ -96,7 +96,11 @@ module.exports = {
                         groq: `*[_type == 'frontMatter']{
                             _id,
                             title,
-                            "body_toString": body
+                            image {
+                                _type,
+                                asset->
+                            },
+                            "body_toString": body,
                         }`
                     },
                     {
