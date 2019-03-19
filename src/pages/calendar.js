@@ -6,18 +6,10 @@ import Layout from '../components/layout';
 import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
-    const { about, aboutName, siteUrl } = data.site.siteMetadata;
+    const { siteMetadata } = data.site;
 
     const concerts = data.allConcert.edges.map(edge =>
-        <div itemProp="event" key={edge.node._id}
-            itemScope itemType="https://schema.org/MusicEvent">
-            <span itemProp="performer"
-                itemScope itemType="https://schema.org/MusicGroup">
-                <meta itemProp="name" content={aboutName} />
-                <meta itemProp="sameAs" content={about} />
-            </span>
-            <Concert concert={edge.node} siteUrl={siteUrl} />
-        </div>
+        <Concert concert={edge.node} {...siteMetadata} key={edge.node._id} />
     );
 
     return(
