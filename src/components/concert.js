@@ -1,6 +1,7 @@
 import React from "react";
+import image from '../images/default.jpg';
 
-export const Concert = ({ concert }) => {
+export const Concert = ({ concert, siteUrl }) => {
     return (
         <div style={{display: 'flex', cursor: concert.eventURL ? 'pointer' : 'default'}}
             onClick={() => concert.eventURL ? window.open(concert.eventURL) : null}
@@ -11,8 +12,7 @@ export const Concert = ({ concert }) => {
                 </div>
                 <meta itemProp="endDate" content={concert.date.replace(/T.*$/, '')} />
                 <meta itemProp="name" content={'Maria Due at ' + concert.venue} />
-                <meta itemProp="offers" content="" />
-                <meta itemProp="image" content="" />
+                <meta itemProp="image" content={siteUrl + image} />
                 { concert.eventURL ? <meta itemProp="sameAs" content={concert.eventURL} /> : '' }
                 <div itemProp="location" itemScope itemType="https://schema.org/Place"
                     style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}

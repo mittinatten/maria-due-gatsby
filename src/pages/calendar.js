@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
-    const { about, aboutName } = data.site.siteMetadata;
+    const { about, aboutName, siteUrl } = data.site.siteMetadata;
 
     const concerts = data.allConcert.edges.map(edge =>
         <div itemProp="event" key={edge.node._id}
@@ -16,7 +16,7 @@ export const ConcertPage = ({ data }) => {
                 <meta itemProp="name" content={aboutName} />
                 <meta itemProp="sameAs" content={about} />
             </span>
-            <Concert concert={edge.node} />
+            <Concert concert={edge.node} siteUrl={siteUrl} />
         </div>
     );
 
@@ -51,7 +51,8 @@ export const query = graphql`
         site {
             siteMetadata {
                 about,
-                aboutName
+                aboutName,
+                siteUrl
             }
         }
     }
