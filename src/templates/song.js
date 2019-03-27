@@ -7,34 +7,28 @@ import Layout from "../components/layout";
 import "./song.css";
 
 export default ({ data }) => {
-    let lyrics;
-    let album;
+    let lyricsMarkup;
+    let albumMarkup;
     let creator;
-    const fields = data.song.fields;
-    const { about, aboutName } = data.site.siteMetadata;
+    const { song, site } = data;
+    const { title, video, lyrics, album, fields } = song;
+
+    const { about, aboutName, siteUrl } = site.siteMetadata;
 
     if (data.song.lyrics) {
-        lyrics = data.song.lyrics.split('\n').map((line, index) =>
+        lyricsMarkup = lyrics.split('\n').map((line, index) =>
             <div key={index} className="textline">{ line }</div>);
     }
 
-    if (data.song.album && fields && fields.albumSlug) {
-        album =
+    if (album && fields && fields.albumSlug) {
+        albumMarkup =
             <p>
-                Recorded by&nbsp;
-                <span itemProp="byArtist" itemScope itemType="https://schema.org/MusicGroup">
-                    <span itemProp="name">{aboutName}</span>
-                    <meta itemProp="sameAs" content={about} />
-                </span>
-                &nbsp;in&nbsp;
-                <span itemProp="datePublished">{ data.song.album.year }</span>
-                &nbsp;on the album&nbsp;
-                <a itemProp="sameAs" href={fields.albumSlug}>
-                    <span itemProp="name">
-                        { data.song.album.title }
-                    </span>
-                </a>
-                .
+                {'Recorded by '}
+                {aboutName}
+                {' in '}
+                { album.year }
+                {' on the album '}
+                <a href={fields.albumSlug}>{ data.song.album.title }</a>.
             </p>
     }
 
@@ -54,50 +48,56 @@ export default ({ data }) => {
             </p>
     }
 
-    const lyricsMicrodata = fields.lyricsBy.map(person =>
-        <span style={{display: 'none'}}
-            itemProp="lyricist"
-            itemScope itemType="https://schema.org/Person"
-            key={person.sameAs}>
-            <span itemProp="sameAs">{person.sameAs}</span>
-            <span itemProp="name">{person.name}</span>
-        </span>
-    );
-
-    const musicMicrodata = fields.musicBy.map(person =>
-        <span style={{display: 'none'}}
-            itemProp="composer"
-            itemScope itemType="https://schema.org/Person" key={person.sameAs}>
-            <span itemProp="sameAs">{person.sameAs}</span>
-            <span itemProp="name">{person.name}</span>
-        </span>
-    );
-
     return (
         <Layout>
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>
                 <title>{aboutName} - { data.song.title } (song)</title>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        '@context': 'http://schema.org',
+                        '@type': 'MusicComposition',
+                        name: title,
+                        composer: fields.musicBy.map(person => ({
+                            '@type': 'Person',
+                            ...person
+                        })),
+                        lyricist: fields.lyricsBy.map(person => ({
+                            '@type': 'Person',
+                            ...person
+                        })),
+                        datePublished: album.year,
+                        recordedAs: {
+                            '@type': 'MusicRecording',
+                            inAlbum: {
+                                '@type': 'MusicAlbum',
+                                name: album.title,
+                                datePublished: album.year,
+                                url: siteUrl + fields.albumSlug
+                            },
+                            byArtist: {
+                                '@type': 'MusicGroup',
+                                name: aboutName,
+                                sameAs: about
+                            }
+                        },
+                        lyrics: {
+                            '@type': 'CreativeWork',
+                            text: lyrics
+                        },
+                        associatedMedia: video && {
+                            '@type': 'MediaObject',
+                            embedUrl: video
+                        }
+                    })}
+                </script>
             </Helmet>
-            <div itemScope itemType="https://schema.org/MusicComposition">
-                <h2 itemProp="name">{ data.song.title }</h2>
-                { lyricsMicrodata }
-                { musicMicrodata }
-                <div className="lyrics"
-                    itemProp="lyrics"
-                    itemScope itemType="https://schema.org/CreativeWork">
-                    <div itemProp="text">{ lyrics }</div>
-                </div>
-                { creator }
-                <div itemProp="recordedAs"
-                    itemScope itemType="https://schema.org/MusicRecording"
-                    className="credits">
-                    <span itemProp="inAlbum"
-                          itemScope itemType="https://schema.org/MusicAlbum">
-                        { album }
-                    </span>
-                </div>
+            <h2>{ data.song.title }</h2>
+            <div>{ lyricsMarkup }</div>
+            { creator }
+            <div className="credits">
+                { albumMarkup }
             </div>
         </Layout>
     )
@@ -112,6 +112,7 @@ export const query = graphql`
                 title,
                 year
             },
+            video,
             fields {
                 albumSlug,
                 lyricsBy {
@@ -127,7 +128,8 @@ export const query = graphql`
         site {
             siteMetadata {
                 about,
-                aboutName
+                aboutName,
+                siteUrl
             }
         }
     }

@@ -80,9 +80,10 @@ module.exports = {
                             _id,
                             title,
                             lyrics,
+                            video,
                             'album': album->{_ref, title, year},
                             'lyricsBy': lyricsBy[],
-                            'musicBy': musicBy[]
+                            'musicBy': musicBy[],
                         }`
                     },
                     {
