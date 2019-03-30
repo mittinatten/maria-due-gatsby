@@ -11,6 +11,12 @@ module.exports = {
     plugins: [
         'gatsby-plugin-react-helmet',
         {
+            resolve: `gatsby-plugin-canonical-urls`,
+            options: {
+              siteUrl: `https://mariadue.net`,
+            },
+        },
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: 'maria-due',
