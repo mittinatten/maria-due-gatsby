@@ -23,12 +23,12 @@ export default ({ data }) => {
     if (album && fields && fields.albumSlug) {
         albumMarkup =
             <p>
-                {'Recorded by '}
+                {'Song recorded by '}
                 {aboutName}
                 {' in '}
                 { album.year }
                 {' on the album '}
-                <a href={fields.albumSlug}>{ data.song.album.title }</a>.
+                <a href={fields.albumSlug}>{ album.title }</a>.
             </p>
     }
 
@@ -49,7 +49,9 @@ export default ({ data }) => {
     }
 
     return (
-        <Layout>
+        <Layout breadCrumb={[
+                { title: album.title, link: fields.albumSlug },
+                { title: 'Songs' }]}>
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>
@@ -93,8 +95,8 @@ export default ({ data }) => {
                     })}
                 </script>
             </Helmet>
-            <h2>{ data.song.title }</h2>
-            <div>{ lyricsMarkup }</div>
+            <h1>{ data.song.title }</h1>
+            <div className="lyrics">{ lyricsMarkup }</div>
             { creator }
             <div className="credits">
                 { albumMarkup }

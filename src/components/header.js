@@ -14,7 +14,7 @@ const menu = menuItems.map(item =>
         <Link to={item.link} activeClassName="active">{item.label}</Link>
     </div>);
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, breadCrumb }) => (
   <div
     style={{
       marginBottom: '0.5rem',
@@ -37,20 +37,35 @@ const Header = ({ siteTitle }) => (
             }}
             className="header"
         >
-            <div style={{ }}>
-                <h1 style={{ margin: 0 }} >
+            <div style={{ }} className="title">
+                <h2 style={{ margin: 0 }} >
                     <Link
                       to="/"
                       style={{ textDecoration: 'none' }}
                     >
                         {siteTitle}
                     </Link>
-                </h1>
+                </h2>
             </div>
             <div className="menu">
                 {menu}
             </div>
         </div>
+        { breadCrumb && breadCrumb.length &&
+            <div className="breadcrumb">
+                { breadCrumb.map((item, index) =>
+                    <span className="item" key={index}>
+
+                        { item.link
+                            ? <Link to={item.link}>{item.title}</Link>
+                            : item.title
+                        }
+                        <i className="fas fa-angle-right" />
+                    </span>
+                  )
+                }
+            </div>
+        }
     </div>
   </div>
 )

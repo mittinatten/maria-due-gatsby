@@ -7,7 +7,7 @@ import Header from './header';
 import './style.css';
 import image from '../images/default.jpg';
 
-const Layout = ({ children }) => (
+const Layout = ({ breadCrumb, children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -43,16 +43,12 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div itemScope itemType="https://schema.org/MusicGroup"
-          style={{
-            margin: '0 auto',
-            maxWidth: 800,
-            padding: '0px 1.0875rem 1.45rem',
-          }}
-        >
-          <meta itemProp="name" content={data.site.siteMetadata.aboutName} />
-          <meta itemProp="sameAs" content={data.site.siteMetadata.about} />
+        <Header siteTitle={data.site.siteMetadata.title} breadCrumb={breadCrumb} />
+        <div style={{
+          margin: '0 auto',
+          maxWidth: 800,
+          padding: '0px 1.0875rem 1.45rem',
+        }}>
           {children}
         </div>
       </>
@@ -62,6 +58,7 @@ const Layout = ({ children }) => (
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  breadCrumb: PropTypes.array
 }
 
 export default Layout

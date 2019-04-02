@@ -20,6 +20,23 @@ div.header {
     align-items: center;
 }
 
+.title h2 {
+    font-size: 32px;
+}
+
+.breadcrumb {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: grey;
+    text-transform: uppercase;
+}
+
+.breadcrumb i {
+    color: black;
+    margin: 0px 0.5rem;
+}
+
+
 @media only screen and (min-width: 600px) {
     div.menu > div {
         display: inline;

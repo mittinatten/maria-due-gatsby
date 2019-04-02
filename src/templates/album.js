@@ -69,7 +69,7 @@ export default ({ data }) => {
     }
 
     return (
-        <Layout>
+        <Layout breadCrumb={[{title: 'Catalogue', link: '/catalogue'}, {title: 'Albums'}]}>
             <Helmet meta={meta}>
                 <title>{aboutName} - {album.title} (album)</title>
                 <script type="application/ld+json">
@@ -87,7 +87,7 @@ export default ({ data }) => {
                 </script>
             </Helmet>
             <div style={{marginBottom: '1rem'}}>
-                <h2>{play}<span itemProp="name">{album.title} ({album.year})</span></h2>
+                <h1>{play}<span itemProp="name">{album.title} ({album.year})</span></h1>
                 <div className="album">
                     <div className="cover">
                         <AlbumCover album={album}></AlbumCover>
