@@ -17,6 +17,7 @@ export const VideoPage = ({ data }) => {
                 ]}>
                     <title>Maria Due - Videos</title>
                 </Helmet>
+                <h1>Videos</h1>
                 <div className='cards'>
                 { videos }
                 </div>

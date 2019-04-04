@@ -26,6 +26,7 @@ export const AlbumPage = ({ data }) => {
                 ]}>
                     <title>{aboutName} - Catalogue</title>
                 </Helmet>
+                <h1>Catalogue</h1>
                 <div className="cards">{ albums }</div>
                 <h2>Collaborations</h2>
                 { appearsOn }
