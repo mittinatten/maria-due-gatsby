@@ -3,10 +3,10 @@ import { Link } from 'gatsby'
 import './header.css';
 
 const menuItems = [
-    { link: '/catalogue', label: 'Catalogue' },
-    { link: '/calendar', label: 'Calendar' },
-    { link: '/videos', label: 'Videos' },
-    { link: '/about', label: 'About' }
+    { link: '/catalogue/', label: 'Catalogue' },
+    { link: '/calendar/', label: 'Calendar' },
+    { link: '/videos/', label: 'Videos' },
+    { link: '/about/', label: 'About' }
 ]
 
 const menu = menuItems.map(item =>
