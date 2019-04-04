@@ -1,0 +1,54 @@
+.date {
+    font-size: 1.2rem;
+}
+.address {
+    text-transform: uppercase;
+    color: grey;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.links {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.links a {
+    margin-right: 0.5rem;
+}
+
+.links a:not(:first-child) {
+    border-left: 1px solid black;
+    padding-left: 0.5rem;
+}
+
+.links i {
+    display: none;
+    margin-right: 0.35rem;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.concert {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.meta {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+@media  (min-width: 600px) {
+    .meta {
+        min-width: 250px;
+        max-width: 250px;
+    }
+}

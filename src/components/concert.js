@@ -1,12 +1,11 @@
 import React from "react";
 import image from '../images/default.jpg';
 import Helmet from 'react-helmet';
+import './concert.css';
 
 export const Concert = ({ concert, siteUrl, aboutName, about }) => {
     return (
-        <div style={{display: 'flex', cursor: concert.eventURL ? 'pointer' : 'default'}}
-            onClick={() => concert.eventURL ? window.open(concert.eventURL) : null}
-        >
+        <div className="concert">
             <Helmet>
                 <script type="application/ld+json">
                     {JSON.stringify({
@@ -24,10 +23,18 @@ export const Concert = ({ concert, siteUrl, aboutName, about }) => {
                                 addressLocality: concert.city,
                                 addressCountry: concert.country
                             },
-                            name: concert.venue
+                            name: concert.venue,
+                            sameAs: concert.venueURL
+                                ? concert.venueURL
+                                : null
                         },
                         description: concert.description,
-                        offers: [],
+                        offers: concert.tickets
+                            ? [{
+                                '@type': 'Offer',
+                                url: concert.tickets
+                                }]
+                            : [],
                         performers: {
                             '@type': 'MusicGroup',
                             name: aboutName,
@@ -37,20 +44,31 @@ export const Concert = ({ concert, siteUrl, aboutName, about }) => {
                     })}
                 </script>
             </Helmet>
-            <div style={{minWidth: 150, maxWidth: 150}}>
-                <div style={{fontSize: '1.2rem'}}>
+            <div className="meta">
+                <div className="date">
                     {concert.date.replace(/T.*$/, '')}
                 </div>
-                { concert.eventURL ? <meta itemProp="sameAs" content={concert.eventURL} /> : '' }
-                <div style={{textTransform: 'uppercase', color: 'grey', fontSize: '0.85rem'}}>
-                   {concert.city + ', ' + concert.country}
-                </div>
+                <div className="address">
+                    {concert.city + ', ' + concert.country}
+                 </div>
+
             </div>
-            <div>
-                <h3 style={{marginBottom: '0.5rem', textDecoration: concert.eventURL ? 'underline' : 'none'}}>
-                    {concert.venue}
-                </h3>
+            <div className="description">
+                <h2>
+                    { concert.venue }
+                </h2>
                 <p>{concert.description}</p>
+                <div className="links">
+                    { concert.tickets &&
+                        <a href={concert.tickets}><i className="fas fa-angle-right"/>Tickets</a>
+                    }
+                    { concert.eventURL &&
+                        <a href={concert.eventURL}><i className="fas fa-angle-right"/>Event</a>
+                    }
+                    { concert.venueURL &&
+                        <a href={concert.venueURL}><i className="fas fa-angle-right"/>Venue</a>
+                    }
+                </div>
             </div>
         </div>
     );

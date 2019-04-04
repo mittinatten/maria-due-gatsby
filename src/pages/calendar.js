@@ -19,6 +19,7 @@ export const ConcertPage = ({ data }) => {
             ]}>
                 <title>Maria Due - Calendar</title>
             </Helmet>
+            <h1>Calendar</h1>
             { concerts }
         </Layout>
     );
@@ -32,11 +33,13 @@ export const query = graphql`
                 node {
                     _id,
                     venue,
+                    venueURL,
                     date,
                     description,
                     eventURL,
                     city,
-                    country
+                    country,
+                    tickets
                 }
             }
         }
