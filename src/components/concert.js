@@ -60,13 +60,13 @@ export const Concert = ({ concert, siteUrl, aboutName, about }) => {
                 <p>{concert.description}</p>
                 <div className="links">
                     { concert.tickets &&
-                        <a href={concert.tickets}><i className="fas fa-angle-right"/>Tickets</a>
+                        <a href={concert.tickets}>Tickets</a>
                     }
                     { concert.eventURL &&
-                        <a href={concert.eventURL}><i className="fas fa-angle-right"/>Event</a>
+                        <a href={concert.eventURL}>Event</a>
                     }
                     { concert.venueURL &&
-                        <a href={concert.venueURL}><i className="fas fa-angle-right"/>Venue</a>
+                        <a href={concert.venueURL}>Venue</a>
                     }
                 </div>
             </div>
