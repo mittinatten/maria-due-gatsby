@@ -1,38 +1,38 @@
-.date {
+.concert .date {
     font-size: 1.2rem;
 }
-.address {
+.concert .address {
     text-transform: uppercase;
     color: grey;
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
 }
 
-.links {
+.concert .links {
     margin-bottom: 1rem;
     margin-top: 0.5rem;
     font-size: 0.85rem;
 }
 
-.links a {
+.concert .links a {
     margin-right: 0.5rem;
 }
 
-.links a:not(:first-child) {
+.concert .links a:not(:first-child) {
     border-left: 1px solid black;
     padding-left: 0.5rem;
 }
 
-.links i {
+.concert .links i {
     display: none;
     margin-right: 0.35rem;
 }
 
-h2 {
+.concert h2 {
     margin-bottom: 0.5rem;
 }
 
-p {
+.concert p {
     margin-bottom: 1rem;
 }
 
@@ -41,13 +41,13 @@ p {
     margin-bottom: 1rem;
 }
 
-.meta {
+.concert .meta {
     min-width: 150px;
     max-width: 150px;
 }
 
 @media  (min-width: 600px) {
-    .meta {
+    .concert .meta {
         min-width: 250px;
         max-width: 250px;
     }
