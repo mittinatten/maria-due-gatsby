@@ -51,7 +51,7 @@ export default ({ data, location }) => {
     return (
         <Layout breadCrumb={[
                 { title: album.title, link: fields.albumSlug },
-                { title: song.title }]}>
+                { title: song.title, link: fields.slug }]}>
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>
@@ -116,6 +116,7 @@ export const query = graphql`
             },
             video,
             fields {
+                slug,
                 albumSlug,
                 lyricsBy {
                     name,

@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from 'react-helmet'
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
 import AlbumCover from "../components/album-cover";
@@ -8,7 +8,8 @@ import { albumMetadata } from '../components/album';
 import "./album.css"
 
 export default ({ data }) => {
-    const album = data.album;
+    const { album } = data;
+    const { fields } = album;
     const { about, aboutName, siteUrl } = data.site.siteMetadata;
     let songs;
     let play;
@@ -19,13 +20,13 @@ export default ({ data }) => {
         play = <a href={ album.spotify } className='play-link'><i className={'fas fa-play-circle'}></i></a>;
     }
 
-    if (album.fields.songs) {
+    if (fields.songs) {
         songs =
             <div>
                 <ol>
                     { album.fields.songs.map(song =>
                         <li key={song.slug}>
-                            <a href={song.slug}>{ song.title }</a>
+                            <Link to={song.slug}>{ song.title }</Link>
                         </li>)
                     }
                 </ol>
@@ -69,7 +70,10 @@ export default ({ data }) => {
     }
 
     return (
-        <Layout breadCrumb={[{title: 'Catalogue', link: '/catalogue'}, {title: album.title}]}>
+        <Layout breadCrumb={[
+            {title: 'Albums', link: '/catalogue'},
+            {title: album.title, link: fields.slug }
+        ]}>
             <Helmet meta={meta}>
                 <title>{aboutName} - {album.title} (album)</title>
                 <script type="application/ld+json">
@@ -123,6 +127,7 @@ export const query = graphql`
                 sameAs
             },
             fields {
+                slug,
                 songs {
                     title,
                     slug

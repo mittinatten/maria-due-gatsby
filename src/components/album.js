@@ -1,6 +1,7 @@
 import React from "react";
 import AlbumCover from "./album-cover";
 import Helmet from 'react-helmet';
+import { Link } from 'gatsby';
 
 export const albumMetadata = ({album, aboutName, about, siteUrl}) =>
     ({
@@ -37,14 +38,14 @@ const Album = ({aboutName, about, album }) =>
             </script>
         </Helmet>
         <div style={{flex: 8 }}>
-            <a href={album.fields.slug}>
+            <Link to={album.fields.slug}>
                 <AlbumCover album={album}></AlbumCover>
-            </a>
+            </Link>
         </div>
         <div style={{flex: 1}}>
-            <a href={album.fields.slug}>
+            <Link to={album.fields.slug}>
                 {album.title}
-            </a>
+            </Link>
         </div>
     </div>);
 
