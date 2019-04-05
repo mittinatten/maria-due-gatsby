@@ -7,7 +7,7 @@ import Layout from '../components/layout';
 
 export const IndexPage = ({ data }) => {
     return(
-            <Layout>
+            <Layout breadCrumb={[]}>
                 <Helmet meta={[
                     { name: 'description', content: data.frontMatter.title },
                     { name: 'og:image', content: data.frontMatter.image.asset.url }

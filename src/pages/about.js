@@ -5,9 +5,9 @@ import BlockContent from '@sanity/block-content-to-react';
 
 import Layout from '../components/layout';
 
-export const IndexPage = ({ data }) => {
+export const IndexPage = ({ data, location }) => {
     return(
-        <Layout>
+        <Layout breadCrumb={{ title: 'About' }} location={location}>
             <Helmet>
                 <title>Maria Due - About</title>
             </Helmet>

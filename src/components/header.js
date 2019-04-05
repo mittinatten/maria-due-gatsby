@@ -51,20 +51,17 @@ const Header = ({ siteTitle, breadCrumb }) => (
                 {menu}
             </div>
         </div>
-        { breadCrumb && breadCrumb.length &&
-            <div className="breadcrumb">
-                { breadCrumb.map((item, index) =>
+        { (breadCrumb && breadCrumb.length)
+            ? <div className="breadcrumb">
+                { breadCrumb.filter(item => !!(item.link)).map((item, index) =>
                     <span className="item" key={index}>
-
-                        { item.link
-                            ? <Link to={item.link}>{item.title}</Link>
-                            : item.title
-                        }
+                       <Link to={item.link}>{item.title}</Link>
                         <i className="fas fa-angle-right" />
                     </span>
                   )
                 }
             </div>
+            : null
         }
     </div>
   </div>

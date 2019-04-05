@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 
 import "./song.css";
 
-export default ({ data }) => {
+export default ({ data, location }) => {
     let lyricsMarkup;
     let albumMarkup;
     let creator;
@@ -51,7 +51,8 @@ export default ({ data }) => {
     return (
         <Layout breadCrumb={[
                 { title: album.title, link: fields.albumSlug },
-                { title: 'Songs' }]}>
+                { title: song.title }]}
+                location={location}>
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>
