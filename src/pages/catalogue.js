@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import Album from '../components/album';
 import Work from '../components/work';
 
-export const AlbumPage = ({ data, location }) => {
+export const AlbumPage = ({ data }) => {
     const { aboutName } = data.site.siteMetadata;
 
     const albums = data.allAlbum.edges.map(edge =>
@@ -20,7 +20,7 @@ export const AlbumPage = ({ data, location }) => {
     );
 
     return(
-            <Layout breadCrumb={[{title: 'Catalogue'}]} location={location}>
+            <Layout breadCrumb={[{title: 'Catalogue'}]}>
                 <Helmet meta={[
                     { name: 'description', content: 'List of albums by ' + {aboutName} + ' and collaborations'}
                 ]}>

@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Layout from '../components/layout';
 import Concert from '../components/concert';
 
-export const ConcertPage = ({ data, location }) => {
+export const ConcertPage = ({ data }) => {
     const { siteMetadata } = data.site;
 
     const concerts = data.allConcert.edges.map(edge =>
@@ -13,7 +13,7 @@ export const ConcertPage = ({ data, location }) => {
     );
 
     return(
-        <Layout location={location} breadCrumb={[{title: 'Calendar'}]}>
+        <Layout breadCrumb={[{title: 'Calendar'}]}>
             <Helmet meta={[
                 { name: 'description', content: 'Concert calendar for Maria Due.'}
             ]}>

@@ -7,7 +7,7 @@ import AlbumCover from "../components/album-cover";
 import { albumMetadata } from '../components/album';
 import "./album.css"
 
-export default ({ data, location }) => {
+export default ({ data }) => {
     const album = data.album;
     const { about, aboutName, siteUrl } = data.site.siteMetadata;
     let songs;
@@ -69,7 +69,7 @@ export default ({ data, location }) => {
     }
 
     return (
-        <Layout breadCrumb={[{title: 'Catalogue', link: '/catalogue'}, {title: album.title}]} location={location}>
+        <Layout breadCrumb={[{title: 'Catalogue', link: '/catalogue'}, {title: album.title}]}>
             <Helmet meta={meta}>
                 <title>{aboutName} - {album.title} (album)</title>
                 <script type="application/ld+json">

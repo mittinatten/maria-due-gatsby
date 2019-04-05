@@ -51,8 +51,7 @@ export default ({ data, location }) => {
     return (
         <Layout breadCrumb={[
                 { title: album.title, link: fields.albumSlug },
-                { title: song.title }]}
-                location={location}>
+                { title: song.title }]}>
             <Helmet meta={[
                 { name: 'description', content: 'Song perfromed by Maria Due'}
             ]}>

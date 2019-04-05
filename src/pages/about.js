@@ -2,12 +2,11 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import BlockContent from '@sanity/block-content-to-react';
-
 import Layout from '../components/layout';
 
-export const IndexPage = ({ data, location }) => {
+export const IndexPage = ({ data }) => {
     return(
-        <Layout breadCrumb={{ title: 'About' }} location={location}>
+        <Layout breadCrumb={[{ title: 'About' }]}>
             <Helmet>
                 <title>Maria Due - About</title>
             </Helmet>
