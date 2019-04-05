@@ -52,13 +52,13 @@ const MetaHeader = ({location, siteMetadata, breadcrumbList }) => {
             })}
         </script>
         <script type="application/ld+json">
-        {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'MusicGroup',
-            name: aboutName,
-            '@id': siteUrl,
-            sameAs: about
-        })}
+            {JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'MusicGroup',
+                name: aboutName,
+                '@id': siteUrl,
+                sameAs: about
+            })}
         </script>
         { location && location.href && <script type="application/ld+json">
             {JSON.stringify({
