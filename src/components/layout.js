@@ -60,7 +60,7 @@ const MetaHeader = ({location, siteMetadata, breadcrumbList }) => {
             sameAs: about
         })}
         </script>
-        <script type="application/ld+json">
+        { location && location.href && <script type="application/ld+json">
             {JSON.stringify({
                 '@context': 'https://schema.org',
                 '@type': 'BreadcrumbList',
@@ -70,14 +70,12 @@ const MetaHeader = ({location, siteMetadata, breadcrumbList }) => {
                     position: index + 1,
                     item: {
                         '@type': 'Thing',
-                        '@id': (item.link && item.link.replace(/^\//, siteUrl + '/')) ||
-                        (location && location.href) ||
-                        null,
+                        '@id': (item.link && item.link.replace(/^\//, siteUrl + '/')) || location.href,
                         name: item.title,
                     }
                 }))
             })}
-        </script>
+        </script> }
     </Helmet>
 };
 
