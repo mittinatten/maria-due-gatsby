@@ -7,7 +7,7 @@ import Video from '../components/video';
 
 export const VideoPage = ({ data }) => {
     const videos = data.allVideo.edges.map(edge =>
-        <Video video={edge.node} key={edge.node._id} />
+        <Video video={edge.node} key={edge.node._id} withLink={true}/>
     );
 
     return(

@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Helmet from 'react-helmet'
 
 import Layout from "../components/layout";
+import Video from "../components/video";
 
 import "./song.css";
 
@@ -97,12 +98,15 @@ export default ({ data, location }) => {
                     })}
                 </script>
             </Helmet>
-            <h1>{ data.song.title }</h1>
+            <h1>{ title }</h1>
             <div className="lyrics">{ lyricsMarkup }</div>
             { creator }
             <div className="credits">
                 { albumMarkup }
             </div>
+            { video
+                ? <div style={{maxWidth: 500}}><Video video={{url: video, title: title}} withLink={false} /></div>
+                : null }
         </Layout>
     )
 }
