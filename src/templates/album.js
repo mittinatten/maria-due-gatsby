@@ -83,6 +83,7 @@ export default ({ data }) => {
                             '@type': 'MusicRecording',
                             recordingOf: {
                                 '@type': 'MusicComposition',
+                                '@id': siteUrl + song.slung,
                                 name: song.title,
                                 url: siteUrl + song.slug
                             }

@@ -60,6 +60,8 @@ export default ({ data, location }) => {
                     {JSON.stringify({
                         '@context': 'http://schema.org',
                         '@type': 'MusicComposition',
+                        '@id': siteUrl + fields.slug,
+                        url: siteUrl + fields.slug,
                         name: title,
                         composer: fields.musicBy.map(person => ({
                             '@type': 'Person',

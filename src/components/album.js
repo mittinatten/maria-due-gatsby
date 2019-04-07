@@ -7,18 +7,21 @@ export const albumMetadata = ({album, aboutName, about, siteUrl}) =>
     ({
         '@context': 'http://schema.org',
         '@type': 'MusicAlbum',
+        '@id': siteUrl + album.fields.slug,
+        url: siteUrl + album.fields.slug,
         byArtist: {
             '@type': 'MusicGroup',
+            '@id': siteUrl,
             name: aboutName,
             sameAs: about,
             url: siteUrl
         },
         name: album.title,
-        url: siteUrl + album.fields.slug,
         image: album.cover && album.cover.asset.url,
         datePublished: album.year,
         producer:  album.producer && {
             '@type': 'Person',
+            '@id': album.producer.homePage,
             name: album.producer.name,
             url: album.producer.homePage
         },
