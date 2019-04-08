@@ -22,7 +22,7 @@ export const AlbumPage = ({ data }) => {
     return(
             <Layout breadCrumb={[{title: 'Catalogue'}]}>
                 <Helmet meta={[
-                    { name: 'description', content: 'List of albums by ' + {aboutName} + ' and collaborations'}
+                    { name: 'description', content: 'List of albums by ' + aboutName + ' and collaborations'}
                 ]}>
                     <title>{aboutName} - Catalogue</title>
                 </Helmet>
