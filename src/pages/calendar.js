@@ -7,6 +7,7 @@ import Concert from '../components/concert';
 
 export const ConcertPage = ({ data }) => {
     const { siteMetadata } = data.site;
+    const { aboutName } = siteMetadata;
 
     const concerts = data.allConcert.edges.map(edge =>
         <Concert concert={edge.node} {...siteMetadata} key={edge.node._id} />
@@ -15,9 +16,9 @@ export const ConcertPage = ({ data }) => {
     return(
         <Layout breadCrumb={[{title: 'Calendar'}]}>
             <Helmet meta={[
-                { name: 'description', content: 'Concert calendar for Maria Due.'}
+                { name: 'description', content: 'Concert calendar for ' + aboutName + '.'}
             ]}>
-                <title>Maria Due - Calendar</title>
+                <title>{aboutName} - Calendar</title>
             </Helmet>
             <h1>Calendar</h1>
             { concerts }

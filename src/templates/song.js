@@ -25,7 +25,7 @@ export default ({ data, location }) => {
         albumMarkup =
             <p>
                 {'Song recorded by '}
-                {aboutName}
+                { aboutName }
                 {' in '}
                 { album.year }
                 {' on the album '}
@@ -54,7 +54,8 @@ export default ({ data, location }) => {
                 { title: album.title, link: fields.albumSlug },
                 { title: song.title, link: fields.slug }]}>
             <Helmet meta={[
-                { name: 'description', content: 'Song perfromed by Maria Due'}
+                { name: 'description', content: 'Song performed by ' + aboutName + '.'},
+                { name: 'og:image', content: album.cover && album.cover.asset.url }
             ]}>
                 <title>{aboutName} - { data.song.title } (song)</title>
                 <script type="application/ld+json">
@@ -118,7 +119,12 @@ export const query = graphql`
             lyrics,
             album {
                 title,
-                year
+                year,
+                cover {
+                    asset {
+                        url
+                    }
+                }
             },
             video,
             fields {

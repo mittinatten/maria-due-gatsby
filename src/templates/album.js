@@ -62,7 +62,7 @@ export default ({ data }) => {
     }
 
     const meta = [
-        { name: 'description', content: 'Album by Maria Due, released in ' + album.year}
+        { name: 'description', content: 'Album by ' + aboutName + ', released in ' + album.year + '.'}
     ];
 
     if (album.cover && album.cover.asset) {

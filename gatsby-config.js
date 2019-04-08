@@ -90,7 +90,7 @@ module.exports = {
                             title,
                             lyrics,
                             video,
-                            'album': album->{_ref, title, year},
+                            'album': album->{_ref, title, year, cover { _type, asset->}},
                             'lyricsBy': lyricsBy[],
                             'musicBy': musicBy[],
                         }`

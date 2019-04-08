@@ -6,16 +6,18 @@ import Layout from '../components/layout';
 import Video from '../components/video';
 
 export const VideoPage = ({ data }) => {
-    const videos = data.allVideo.edges.map(edge =>
+    const { allVideo, site } = data;
+    const { aboutName } = site.siteMetadata;
+    const videos = allVideo.edges.map(edge =>
         <Video video={edge.node} key={edge.node._id} withLink={true}/>
     );
 
     return(
             <Layout breadCrumb={[{title: 'Videos'}]}>
                 <Helmet meta={[
-                    { name: 'description', content: 'Music videos by Maria Due' }
+                    { name: 'description', content: 'Music videos by ' + {aboutName} + '.' }
                 ]}>
-                    <title>Maria Due - Videos</title>
+                    <title>{aboutName} - Videos</title>
                 </Helmet>
                 <h1>Videos</h1>
                 <div className='cards'>
@@ -26,19 +28,24 @@ export const VideoPage = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
-    allVideo(sort: {fields: [ sortOrder ], order: DESC} ) {
-      totalCount,
-      edges {
-        node {
-          _id,
-          url,
-          title,
-          sortOrder
+    query {
+        allVideo(sort: {fields: [ sortOrder ], order: DESC} ) {
+            totalCount,
+            edges {
+                node {
+                    _id,
+                    url,
+                    title,
+                    sortOrder
+                }
+            }
+        },
+        site {
+            siteMetadata {
+                aboutName,
+            }
         }
-      }
     }
-  }
 `;
 
 
